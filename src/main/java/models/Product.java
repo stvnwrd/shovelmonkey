@@ -1,5 +1,10 @@
 package models;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="products")
 public class Product {
 
     private int id;
@@ -17,6 +22,9 @@ public class Product {
         this.subCategory = subCategory;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -25,6 +33,7 @@ public class Product {
         this.id = id;
     }
 
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -33,6 +42,7 @@ public class Product {
         this.name = name;
     }
 
+    @Column(name = "price")
     public int getPrice() {
         return price;
     }
@@ -41,6 +51,7 @@ public class Product {
         this.price = price;
     }
 
+    @Column(name = "vat")
     public int getVat() {
         return vat;
     }
@@ -49,6 +60,7 @@ public class Product {
         this.vat = vat;
     }
 
+    @Column(name = "blurb")
     public String getBlurb() {
         return blurb;
     }
@@ -57,6 +69,8 @@ public class Product {
         this.blurb = blurb;
     }
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "subCategory_id", nullable = false)
     public SubCategory getSubCategory() {
         return subCategory;
     }
