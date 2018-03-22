@@ -3,17 +3,16 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Category {
+public class SubCategory {
 
     private int id;
     private String title;
-    private List<SubCategory> subCategories;
+    private List<Product> products;
 
-    public Category(String title, ArrayList<SubCategory> subCategories) {
+    public SubCategory(String title, List<Product> products) {
         this.title = title;
-        this.subCategories = new ArrayList<>();
+        this.products = new ArrayList<>();
     }
-
 
     public int getId() {
         return id;
@@ -31,11 +30,11 @@ public class Category {
         this.title = title;
     }
 
-    public List<SubCategory> getSubCategories() {
-        return subCategories;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setSubCategories(List<SubCategory> subCategories) {
-        this.subCategories = subCategories;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
