@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Entity
-@Table(name="shops")
-public class Shop {
+@Table(name="stock")
+public class Stock {
 
 
     private int id;
     private Map<Product, Integer> stocklist;
 
-    public Shop() {
+    public Stock() {
         this.stocklist = new HashMap<>();
     }
 
@@ -27,7 +27,7 @@ public class Shop {
         this.id = id;
     }
 
-
+    @Transient
     public Map<Product, Integer> getStocklist() {
         return stocklist;
     }

@@ -1,23 +1,14 @@
-package db;
-
+import db.DBHelper;
 import models.Category;
 import models.Product;
-import models.Stock;
 import models.SubCategory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Seeds {
+public class runner {
 
-
-    public static void seedData() {
-
-        DBHelper.deleteAll(Product.class);
-        DBHelper.deleteAll(SubCategory.class);
-        DBHelper.deleteAll(Category.class);
-        DBHelper.deleteAll(Stock.class);
-
+    public static void main(String[] args) {
 
 
         List<SubCategory> excavateSubs = new ArrayList<>();
@@ -67,6 +58,7 @@ public class Seeds {
         subCategory3.addProduct(product5);
         subCategory4.addProduct(product6);
 
+        List<Product> productsBySubCat = DBHelper.findProductsBySubCat(subCategory2);
 
     }
 }

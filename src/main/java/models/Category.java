@@ -12,7 +12,7 @@ public class Category {
     private String title;
     private List<SubCategory> subCategories;
 
-    public Category(String title, ArrayList<SubCategory> subCategories) {
+    public Category(String title, List<SubCategory> subCategories) {
         this.title = title;
         this.subCategories = new ArrayList<>();
     }
@@ -37,12 +37,16 @@ public class Category {
         this.title = title;
     }
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     public List<SubCategory> getSubCategories() {
         return subCategories;
     }
 
     public void setSubCategories(List<SubCategory> subCategories) {
         this.subCategories = subCategories;
+    }
+
+    public void addSubCategory(SubCategory subCategory) {
+        subCategories.add(subCategory);
     }
 }

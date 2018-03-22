@@ -13,7 +13,7 @@ public class SubCategory {
     private Category category;
     private List<Product> products;
 
-    public SubCategory(String title, Category category, List<Product> products) {
+    public SubCategory(String title, Category category) {
         this.title = title;
         this.category = category;
         this.products = new ArrayList<>();
@@ -56,5 +56,9 @@ public class SubCategory {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
     }
 }
