@@ -24,9 +24,9 @@ public class Seeds {
         List<SubCategory> recordingSubs = new ArrayList<>();
 
 
-        Category category1 = new Category("Excavation", excavateSubs);
+        Category category1 = new Category("Excavation");
         DBHelper.save(category1);
-        Category category2 = new Category("Recording", recordingSubs);
+        Category category2 = new Category("Recording");
         DBHelper.save(category2);
 
 

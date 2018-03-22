@@ -12,7 +12,7 @@ public class Category {
     private String title;
     private List<SubCategory> subCategories;
 
-    public Category(String title, List<SubCategory> subCategories) {
+    public Category(String title) {
         this.title = title;
         this.subCategories = new ArrayList<>();
     }
