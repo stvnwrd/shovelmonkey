@@ -1,8 +1,11 @@
 package models;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name="categories")
 public class Category {
 
     private int id;
@@ -14,7 +17,9 @@ public class Category {
         this.subCategories = new ArrayList<>();
     }
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -23,6 +28,7 @@ public class Category {
         this.id = id;
     }
 
+    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -31,6 +37,7 @@ public class Category {
         this.title = title;
     }
 
+    @OneToMany(mappedBy = "category")
     public List<SubCategory> getSubCategories() {
         return subCategories;
     }

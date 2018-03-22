@@ -1,9 +1,13 @@
 package models;
 
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
 
+@Entity
+@Table(name="shops")
 public class Shop {
+
 
     private int id;
     private Map<Product, Integer> stocklist;
@@ -12,6 +16,9 @@ public class Shop {
         this.stocklist = new HashMap<>();
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -19,6 +26,7 @@ public class Shop {
     public void setId(int id) {
         this.id = id;
     }
+
 
     public Map<Product, Integer> getStocklist() {
         return stocklist;
