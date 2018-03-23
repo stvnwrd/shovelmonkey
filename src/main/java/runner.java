@@ -55,7 +55,17 @@ public class runner {
         subCategory3.addProduct(product5);
         subCategory4.addProduct(product6);
 
-        List<Product> productsBySubCat = DBHelper.findProductsBySubCat(subCategory2);
+
+        List<Product> allProducts = DBHelper.getAll(Product.class);
+        List<Category> allCategories = DBHelper.getAll(Category.class);
+        List<SubCategory> allSubCategories = DBHelper.getAll(SubCategory.class);
+
+        Product foundProductById = DBHelper.find(Product.class, product3.getId());
+        Category foundCategoryById = DBHelper.find(Category.class, category1.getId());
+        SubCategory foundSubCategoryById = DBHelper.find(SubCategory.class, subCategory1.getId());
+
+        List<Product> productsBySubCat = DBHelper.findProductsBySubCategory(subCategory2);
+        List<SubCategory> subCatsByCat = DBHelper.findSubCatsByCategory(category1);
 
     }
 }

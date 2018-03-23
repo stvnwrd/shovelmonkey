@@ -19,6 +19,9 @@ public class SubCategory {
         this.products = new ArrayList<>();
     }
 
+    public SubCategory() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

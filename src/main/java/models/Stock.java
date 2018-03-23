@@ -12,9 +12,14 @@ public class Stock {
     private int id;
     private Map<Product, Integer> stocklist;
 
+
+
     public Stock() {
         this.stocklist = new HashMap<>();
     }
+
+//    EMPTY CONSTRUCTOR!
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

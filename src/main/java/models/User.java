@@ -18,6 +18,8 @@ public class User {
 
     }
 
+//    EMPTY CONSTUCTOR!
+
     public int getId() {
         return id;
     }

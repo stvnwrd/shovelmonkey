@@ -22,6 +22,9 @@ public class Product {
         this.subCategory = subCategory;
     }
 
+    public Product() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
