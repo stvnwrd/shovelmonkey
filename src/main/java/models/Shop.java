@@ -1,5 +1,7 @@
 package models;
 
+import db.DBHelper;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,8 +21,6 @@ public class Shop {
     }
 
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -32,7 +32,7 @@ public class Shop {
         this.id = id;
     }
 
-    @Column(name = "stock")
+    @OneToMany(mappedBy = "user")
     public List<Product> getStock() {
         return stock;
     }
@@ -40,4 +40,18 @@ public class Shop {
     public void setStock(List<Product> stock) {
         this.stock = stock;
     }
+
+    public int stockCount() {
+        return this.stock.size();
+    }
+
+    public void addToStock (Product product) {
+        stock.add(product);
+    }
+
+    public void removeFromStock (Product product) {
+        stock.remove(product);
+        DBHelper.delete(product);
+    }
+
 }
