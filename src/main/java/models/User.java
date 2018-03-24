@@ -1,6 +1,5 @@
 package models;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class User {
@@ -8,17 +7,20 @@ public class User {
     private int id;
     private String name;
     private String userName;
-    private Map<Product, Integer> basket;
+    private Basket basket;
+    private List<PastOrder> pastOrders;
 
 
     public User(String name, String userName) {
         this.name = name;
         this.userName = userName;
-        this.basket = new HashMap<>();
+        this.basket = basket;
+        this.pastOrders = pastOrders;
 
     }
 
-//    EMPTY CONSTUCTOR!
+    public User() {
+    }
 
     public int getId() {
         return id;
@@ -44,11 +46,19 @@ public class User {
         this.userName = userName;
     }
 
-    public Map<Product, Integer> getBasket() {
+    public Basket getBasket() {
         return basket;
     }
 
-    public void setBasket(Map<Product, Integer> basket) {
+    public void setBasket(Basket basket) {
         this.basket = basket;
+    }
+
+    public List<PastOrder> getPastOrders() {
+        return pastOrders;
+    }
+
+    public void setPastOrders(List<PastOrder> pastOrders) {
+        this.pastOrders = pastOrders;
     }
 }
