@@ -32,7 +32,7 @@ public class Shop {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "shop")
     public List<Product> getStock() {
         return stock;
     }

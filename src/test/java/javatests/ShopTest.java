@@ -44,12 +44,16 @@ public class ShopTest {
         subCategory3 = new SubCategory("Drafting Film, Notebooks, and Record Sheets", category2);
         subCategory4 = new SubCategory("Gauges and Callipers", category2);
 
-        product1 = new Product("Trowel", 1599, "The finest archaeology trowel.", subCategory1);
-        product2 = new Product("Shovel", 1599, "For the best in shovelling.", subCategory2);
-        product3 = new Product("Spade", 1599, "This spade's great.", subCategory2);
-        product4 = new Product("Mattock", 1599, "Mattock like a champ!", subCategory2);
-        product5 = new Product("Permatrace", 1599, "You can certainly trace permanently on this.", subCategory3);
-        product6 = new Product("Line Level", 1599, "For level string, everytime.", subCategory4);
+        stock = new ArrayList<>();
+        shop = new Shop(stock);
+        shop.addToStock(product1, 1);
+
+        product1 = new Product("Trowel", 1599, "The finest archaeology trowel.", subCategory1, shop);
+        product2 = new Product("Shovel", 1599, "For the best in shovelling.", subCategory2, shop);
+        product3 = new Product("Spade", 1599, "This spade's great.", subCategory2, shop);
+        product4 = new Product("Mattock", 1599, "Mattock like a champ!", subCategory2, shop);
+        product5 = new Product("Permatrace", 1599, "You can certainly trace permanently on this.", subCategory3, shop);
+        product6 = new Product("Line Level", 1599, "For level string, everytime.", subCategory4, shop);
 
         stock = new ArrayList<>();
         shop = new Shop(stock);

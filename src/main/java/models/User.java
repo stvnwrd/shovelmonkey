@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -53,7 +54,7 @@ public class User {
         this.userName = userName;
     }
 
-    @Transient
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     public Basket getBasket() {
         return basket;
     }

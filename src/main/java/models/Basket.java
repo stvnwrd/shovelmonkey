@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name="baskets")
 public class Basket {
 
     private int id;
@@ -27,8 +29,7 @@ public class Basket {
         this.id = id;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @Column(name="user")
+    @OneToOne(fetch = FetchType.EAGER)
     public User getUser() {
         return user;
     }
@@ -38,7 +39,7 @@ public class Basket {
     }
 
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="basket_food",
             joinColumns = {@JoinColumn(name="basket_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name="product_id", nullable = false, updatable = false)})

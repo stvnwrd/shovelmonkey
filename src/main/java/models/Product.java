@@ -13,13 +13,21 @@ public class Product {
     private int vat;
     private String blurb;
     private SubCategory subCategory;
+    private Shop shop;
+    private int stockQuantity;
+    private int basketQuantity;
 
 
-    public Product(String name, int price, String blurb, SubCategory subCategory) {
+    public Product(String name, int price, String blurb, SubCategory subCategory, Shop shop) {
         this.name = name;
         this.price = price;
+        this.vat = (int)(price * 0.2);
         this.blurb = blurb;
         this.subCategory = subCategory;
+        this.shop = shop;
+        this.stockQuantity = 0;
+        this.basketQuantity = 0;
+
     }
 
     public Product() {
@@ -80,5 +88,38 @@ public class Product {
 
     public void setSubCategory(SubCategory subCategory) {
         this.subCategory = subCategory;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "shop_id", nullable = false)
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
+
+    @Column(name="quantity")
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
+
+    public void adjustStockQuantity(int quantity) {
+        int stockQuantity = this.getStockQuantity() + quantity;
+        this.setStockQuantity(stockQuantity);
+    }
+
+    @Transient
+    public int getBasketQuantity() {
+        return basketQuantity;
+    }
+
+    public void setBasketQuantity(int basketQuantity) {
+        this.basketQuantity = basketQuantity;
     }
 }
