@@ -2,7 +2,7 @@ package db;
 
 import models.Category;
 import models.Product;
-import models.Stock;
+import models.Shop;
 import models.SubCategory;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class Seeds {
         DBHelper.deleteAll(Product.class);
         DBHelper.deleteAll(SubCategory.class);
         DBHelper.deleteAll(Category.class);
-        DBHelper.deleteAll(Stock.class);
+        DBHelper.deleteAll(Shop.class);
 
 
 
