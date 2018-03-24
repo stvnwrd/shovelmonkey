@@ -1,7 +1,9 @@
 package models;
 
-import java.util.Map;
+import javax.persistence.*;
 
+@Entity
+@Table(name="users")
 public class User {
 
     private int id;
@@ -22,6 +24,9 @@ public class User {
     public User() {
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -30,6 +35,7 @@ public class User {
         this.id = id;
     }
 
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -38,6 +44,7 @@ public class User {
         this.name = name;
     }
 
+    @Column(name = "username")
     public String getUserName() {
         return userName;
     }
@@ -46,6 +53,7 @@ public class User {
         this.userName = userName;
     }
 
+    @Transient
     public Basket getBasket() {
         return basket;
     }
@@ -54,6 +62,7 @@ public class User {
         this.basket = basket;
     }
 
+    @OneToMany(mappedBy = "user")
     public List<PastOrder> getPastOrders() {
         return pastOrders;
     }
