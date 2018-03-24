@@ -17,6 +17,9 @@
         <mapping class = "models.Category"/>
         <mapping class= "models.Product"/>
         <mapping class = "models.SubCategory"/>
-        <!--<mapping class="models.Engineer"/>-->
+        <mapping class = "models.User"/>
+        <mapping class = "models.Shop"/>
+        <mapping class = "models.Basket"/>
+        <mapping class = "models.PastOrder"/>
     </session-factory>
 </hibernate-configuration>

@@ -1,6 +1,7 @@
 import db.DBHelper;
 import models.Category;
 import models.Product;
+import models.Shop;
 import models.SubCategory;
 
 import java.util.ArrayList;
@@ -33,19 +34,21 @@ public class runner {
         category2.addSubCategory(subCategory3);
         category2.addSubCategory(subCategory4);
 
+        List<Product> stock = new ArrayList<>();
+        Shop shop = new Shop(stock);
+        DBHelper.save(shop);
 
-
-        Product product1 = new Product("Trowel", 1599, "The finest archaeology trowel.", subCategory1);
+        Product product1 = new Product("Trowel", 1599, "The finest archaeology trowel.", subCategory1, shop);
         DBHelper.save(product1);
-        Product product2 = new Product("Shovel", 1599, "For the best in shovelling.", subCategory2);
+        Product product2 = new Product("Shovel", 1599, "For the best in shovelling.", subCategory2, shop);
         DBHelper.save(product2);
-        Product product3 = new Product("Spade", 1599, "This spade's great.", subCategory2);
+        Product product3 = new Product("Spade", 1599, "This spade's great.", subCategory2, shop);
         DBHelper.save(product3);
-        Product product4 = new Product("Mattock", 1599, "Mattock like a champ!", subCategory2);
+        Product product4 = new Product("Mattock", 1599, "Mattock like a champ!", subCategory2, shop);
         DBHelper.save(product4);
-        Product product5 = new Product("Permatrace", 1599, "You can certainly trace permanently on this.", subCategory3);
+        Product product5 = new Product("Permatrace", 1599, "You can certainly trace permanently on this.", subCategory3, shop);
         DBHelper.save(product5);
-        Product product6 = new Product("Line Level", 1599, "For level string, everytime.", subCategory4);
+        Product product6 = new Product("Line Level", 1599, "For level string, everytime.", subCategory4, shop);
         DBHelper.save(product6);
 
         subCategory1.addProduct(product1);
@@ -56,11 +59,15 @@ public class runner {
         subCategory4.addProduct(product6);
 
 
+        shop.addToStock(product1, 3);
+        product1.adjustStockQuantity(3);
+        DBHelper.save(product1);
+
         List<Product> allProducts = DBHelper.getAll(Product.class);
         List<Category> allCategories = DBHelper.getAll(Category.class);
         List<SubCategory> allSubCategories = DBHelper.getAll(SubCategory.class);
 
-        Product foundProductById = DBHelper.find(Product.class, product3.getId());
+        Product foundProductById = DBHelper.find(Product.class, product1.getId());
         Category foundCategoryById = DBHelper.find(Category.class, category1.getId());
         SubCategory foundSubCategoryById = DBHelper.find(SubCategory.class, subCategory1.getId());
 
