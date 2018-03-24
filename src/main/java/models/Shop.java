@@ -45,8 +45,10 @@ public class Shop {
         return this.stock.size();
     }
 
-    public void addToStock (Product product) {
-        stock.add(product);
+    public void addToStock (Product product, int quantity) {
+        for(int i=0;i<quantity;i++){
+            stock.add(product);
+        }
     }
 
     public void removeFromStock (Product product) {
