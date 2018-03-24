@@ -7,9 +7,11 @@ import java.util.List;
 public class Basket {
 
     private int id;
+    private User user;
     private List<Product> products;
 
-    public Basket {
+
+    public Basket() {
         this.products = new ArrayList<>();
     }
 
@@ -26,6 +28,20 @@ public class Basket {
     }
 
     @OneToOne(fetch = FetchType.LAZY)
+    @Column(name="user")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="basket_food",
+            joinColumns = {@JoinColumn(name="basket_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name="product_id", nullable = false, updatable = false)})
     public List<Product> getProducts() {
         return products;
     }
