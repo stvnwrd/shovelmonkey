@@ -42,9 +42,9 @@ public class ProductsController {
 
         get("/products/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Category> categories = DBHelper.getAll(Category.class);
+            List<Shop> shops = DBHelper.getAll(Category.class);
             List<SubCategory> subCategories = DBHelper.getAll(SubCategory.class);
-            model.put("categories", categories);
+            model.put("shops", shops);
             model.put("subCategories", subCategories);
             model.put("template", "templates/products/create.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
@@ -102,10 +102,10 @@ public class ProductsController {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Product product = DBHelper.find(Product.class, intId);
-            List<Category> categories = DBHelper.getAll(Category.class);
+            List<Shop> shops = DBHelper.getAll(Shop.class);
             List<SubCategory> subCategories = DBHelper.getAll(SubCategory.class);
             Map<String, Object> model = new HashMap<>();
-            model.put("categories", categories);
+            model.put("shops", shops);
             model.put("subCategories", subCategories);
             model.put("template", "templates/products/edit.vtl");
             model.put("product", product);
@@ -122,6 +122,8 @@ public class ProductsController {
             Product product = DBHelper.find(Product.class, intId);
             int subCategoryId = Integer.parseInt(req.queryParams("subCategory"));
             SubCategory subCategory = DBHelper.find(SubCategory.class, subCategoryId);
+            int shopId = Integer.parseInt(req.queryParams("shop"));
+            Shop shop = DBHelper.find(Shop.class, shopId);
             String name = req.queryParams("name");
             int price = Integer.parseInt(req.queryParams("price"));
             String blurb = req.queryParams("blurb");
@@ -130,14 +132,12 @@ public class ProductsController {
             product.setPrice(price);
             product.setBlurb(blurb);
             product.setSubCategory(subCategory);
-            // set shop
+            product.setShop(shop);
             DBHelper.save(product);
             res.redirect("/products");
             return null;
 
         }, new VelocityTemplateEngine());
-
-
 
 
 
@@ -152,9 +152,6 @@ public class ProductsController {
                 res.redirect("/products");
                 return null;
         }, new VelocityTemplateEngine());
-
-
-
 
 
     }
