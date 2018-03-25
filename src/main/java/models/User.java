@@ -54,7 +54,7 @@ public class User {
         this.userName = userName;
     }
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
     public Basket getBasket() {
         return basket;
     }

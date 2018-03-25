@@ -1,19 +1,18 @@
 package javatests;
 
-import models.Category;
-import models.Product;
-import models.Shop;
-import models.SubCategory;
-
-import java.util.ArrayList;
-import java.util.List;
+import models.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertEquals;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ShopTest {
+import static org.junit.Assert.assertEquals;
 
+public class BasketTest {
+
+    Basket basket;
+    User user;
     Category category1;
     Category category2;
 
@@ -31,7 +30,6 @@ public class ShopTest {
 
     List<Product> stock;
     Shop shop;
-
 
     @Before
     public void setUp() throws Exception {
@@ -56,26 +54,24 @@ public class ShopTest {
         product5 = new Product("Permatrace", 1599, "You can certainly trace permanently on this.", subCategory3, shop);
         product6 = new Product("Line Level", 1599, "For level string, everytime.", subCategory4, shop);
 
+        basket = new Basket();
 
-        shop.addToStock(product1, 1);
-        shop.addToStock(product2, 3);
-    }
+        user = new User("Jeff Bridges", "Jeffster72");
 
-
-    @Test
-    public void canAddToStock() {
-        assertEquals(4, shop.stockCount());
-        assertEquals(1, product1.getStockQuantity());
+        basket.addProduct(product1, 2);
     }
 
     @Test
-    public void canReduceStock() {
-        shop.reduceStock(product2, 1);
-        assertEquals(3, shop.stockCount());
-        assertEquals(2, product2.getStockQuantity());
+    public void canAddToBasket() {
+        basket.addProduct(product1, 1);
+        assertEquals(2, basket.productCount());
+        assertEquals(2, product1.getBasketQuantity());
     }
 
-
+    @Test
+    public void canRemoveFromBasket() {
+        basket.removeProduct(product1, 1);
+        assertEquals(1, basket.productCount());
+        assertEquals(1, product1.getBasketQuantity());
+    }
 }
-
-

@@ -109,8 +109,13 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
 
-    public void adjustStockQuantity(int quantity) {
+    public void increaseStockQuantity(int quantity) {
         int stockQuantity = this.getStockQuantity() + quantity;
+        this.setStockQuantity(stockQuantity);
+    }
+
+    public void decreaseStockQuantity(int quantity) {
+        int stockQuantity = this.getStockQuantity() - quantity;
         this.setStockQuantity(stockQuantity);
     }
 
@@ -121,5 +126,15 @@ public class Product {
 
     public void setBasketQuantity(int basketQuantity) {
         this.basketQuantity = basketQuantity;
+    }
+
+    public void increaseBasketQuantity(int quantity) {
+        int basketQuantity = this.getBasketQuantity() + quantity;
+        this.setBasketQuantity(basketQuantity);
+    }
+
+    public void decreaseBasketQuantity(int quantity) {
+        int basketQuantity = this.getBasketQuantity() - quantity;
+        this.setBasketQuantity(basketQuantity);
     }
 }

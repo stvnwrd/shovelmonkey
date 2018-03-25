@@ -40,7 +40,7 @@ public class Basket {
 
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="basket_food",
+    @JoinTable(name="basket_product",
             joinColumns = {@JoinColumn(name="basket_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name="product_id", nullable = false, updatable = false)})
     public List<Product> getProducts() {
@@ -49,5 +49,23 @@ public class Basket {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public int productCount() {
+        return this.products.size();
+    }
+
+    public void addProduct(Product product, int quantity) {
+        for(int i=0;i<quantity;i++){
+            products.add(product);
+        }
+        product.increaseBasketQuantity(quantity);
+    }
+
+    public void removeProduct(Product product, int quantity) {
+        for(int i=0;i<quantity;i++){
+            products.remove(product);
+        }
+        product.decreaseBasketQuantity(quantity);
     }
 }

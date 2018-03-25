@@ -60,7 +60,6 @@ public class runner {
 
 
         shop.addToStock(product1, 3);
-        product1.adjustStockQuantity(3);
         DBHelper.save(product1);
 
         List<Product> allProducts = DBHelper.getAll(Product.class);
