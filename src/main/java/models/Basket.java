@@ -16,7 +16,6 @@ public class Basket {
     private int totalItems;
 
 
-
     public Basket(List<Order> orders) {
         this.orders = new ArrayList<>();
         this.totalTradeCost = 0;
@@ -46,7 +45,7 @@ public class Basket {
     }
 
 
-    @OneToMany(mappedBy = "basket", fetch = FetchType.EAGER)
+    @Transient
     public List<Order> getOrders() {
         return orders;
     }
@@ -105,4 +104,11 @@ public class Basket {
         this.setTotalVatCost(vatResult);
     }
 
+    public void adjustTotalItems() {
+        int result = 0;
+        for (Order order : orders) {
+            result = result + order.getQuantity();
+        }
+        this.setTotalItems(result);
+    }
 }

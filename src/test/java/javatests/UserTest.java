@@ -65,17 +65,22 @@ public class UserTest {
         user = new User("Jeff Bridges", "Jeffsky72", basket);
 
 
-        order1 = new Order(product1, 2);
-        order2 = new Order(product2, 3);
-        order3 = new Order(product3, 1);
-
-        basket.addOrder(order1);
-
     }
 
     @Test
     public void canCreateOrderAndAddToBasket() {
         user.createOrder(product4, 1);
+        user.createOrder(product2, 2);
         assertEquals(2, user.getBasket().orderCount());
+    }
+
+    @Test
+    public void canRemoveOrderFromBasket() {
+        user.createOrder(product4, 1);
+        user.createOrder(product2, 2);
+        assertEquals(2, user.getBasket().orderCount());
+        user.removeOrder(1);
+        assertEquals(1, user.getBasket().orderCount());
+
     }
 }

@@ -21,7 +21,6 @@ public class User {
         this.name = name;
         this.userName = userName;
         this.basket = basket;
-        this.order = order;
         this.pastOrders = pastOrders;
 
     }
@@ -89,5 +88,10 @@ public class User {
         order = new Order(product, quantity);
         DBHelper.save(order);
         basket.addOrder(order);
+    }
+
+    public void removeOrder(int id) {
+       Order orderToRemove = DBHelper.find(Order.class, id);
+       basket.removeOrder(orderToRemove);
     }
 }

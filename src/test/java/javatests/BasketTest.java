@@ -89,4 +89,10 @@ public class BasketTest {
         assertEquals(7995, basket.getTotalTradeCost());
         assertEquals(1595, basket.getTotalVatCost());
     }
+
+    @Test
+    public void canKeepTotalItems() {
+        basket.adjustTotalItems();
+        assertEquals(5, basket.getTotalItems());
+    }
 }
