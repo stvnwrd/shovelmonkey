@@ -1,0 +1,20 @@
+<div>
+    <p> Category: $product.getSubCategory().getCategory().getTitle()</p>
+    <p> Sub-Category: $product.getSubCategory().getTitle()</p>
+    <p> Item: $product.getName()</p>
+    <p> Description: $product.getBlurb()</p>
+    <p> Trade Price: $product.getTradePrice()</p>
+    <p> VAT: $product.getVat()</p>
+    <p> PRICE: $product.getPrice()</p>
+</div>
+
+<div>
+    <a href="/product/$product.getId()/edit" class="button center">Edit</a>
+    <form action="/products/$products.getId()/delete" method="post">
+        <input type="submit" value="Delete" class="button center">
+    </form>
+    <a href="/products" class="button center">Back to Products List</a>
+
+
+
+</div>

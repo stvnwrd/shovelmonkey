@@ -1,0 +1,19 @@
+<p>Edit Products</p>
+
+<form action="/products/$product.getId()" method="post">
+
+    <label for="item">Item:</label>
+    <input id="item" type="text" name="item" required="true" value="$product.getName()">
+
+    <label for="description">Description:</label>
+    <input id="description" type="text" name="description" required="true" value="$product.getBlurb()">
+
+    <label for="price">Price:</label>
+    <input id="price" type="number" required="true" class="inputbox" value="$product.getPrice()">
+
+
+
+    <input type="submit" value="Save">
+
+</form>
+<a href="/products/$product.getId()">Cancel</a>
