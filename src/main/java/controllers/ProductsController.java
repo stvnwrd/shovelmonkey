@@ -4,6 +4,7 @@ package controllers;
 import db.DBHelper;
 import models.Category;
 import models.Product;
+import models.Shop;
 import models.SubCategory;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -55,14 +56,20 @@ public class ProductsController {
         // create
 
         post ("/products", (req, res) -> {
-//            int categoryId = Integer.parseInt(req.queryParams("category"));
-//            Category category = DBHelper.find(Category.class, categoryId);
+            int shopId = Integer.parseInt(req.queryParams("shop"));
+           Shop shop = DBHelper.find(Shop.class, shopId);
             int subCategoryId = Integer.parseInt(req.queryParams("subCategory"));
             SubCategory subCategory = DBHelper.find(SubCategory.class, subCategoryId);
+
             String name = req.queryParams("name");
             String blurb = req.queryParams("blurb");
             int price = Integer.parseInt(req.queryParams("price"));
-            Product product = new Product(name, price, blurb,  subCategory, shop);
+
+
+            Product product = new Product(name, price, blurb, subCategory, shop);
+
+            // need to look at shop here
+
             DBHelper.save(product);
             res.redirect("/products");
             return null;
@@ -139,12 +146,11 @@ public class ProductsController {
 
 
         post ("/products/:id/delete", (req, res) -> {
-            int id = Integer.parseInt(req, res) -> {
-                Product productToDelete = DBHelper.find(id, Product.class);
+                int id = Integer.parseInt(req.params(":id"));
+                Product productToDelete = DBHelper.find(Product.class, id);
                 DBHelper.delete(productToDelete);
                 res.redirect("/products");
                 return null;
-            }
         }, new VelocityTemplateEngine());
 
 
