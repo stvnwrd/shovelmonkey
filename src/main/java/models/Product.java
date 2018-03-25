@@ -2,6 +2,8 @@ package models;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="products")
@@ -15,7 +17,7 @@ public class Product {
     private SubCategory subCategory;
     private Shop shop;
     private int stockQuantity;
-    private int basketQuantity;
+    private List<Order> orders;
 
 
     public Product(String name, int price, String blurb, SubCategory subCategory, Shop shop) {
@@ -26,7 +28,7 @@ public class Product {
         this.subCategory = subCategory;
         this.shop = shop;
         this.stockQuantity = 0;
-        this.basketQuantity = 0;
+        this.orders = new ArrayList<>();
 
     }
 
@@ -109,6 +111,15 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
 
+    @OneToMany(mappedBy = "product")
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
     public void increaseStockQuantity(int quantity) {
         int stockQuantity = this.getStockQuantity() + quantity;
         this.setStockQuantity(stockQuantity);
@@ -119,22 +130,4 @@ public class Product {
         this.setStockQuantity(stockQuantity);
     }
 
-    @Transient
-    public int getBasketQuantity() {
-        return basketQuantity;
-    }
-
-    public void setBasketQuantity(int basketQuantity) {
-        this.basketQuantity = basketQuantity;
-    }
-
-    public void increaseBasketQuantity(int quantity) {
-        int basketQuantity = this.getBasketQuantity() + quantity;
-        this.setBasketQuantity(basketQuantity);
-    }
-
-    public void decreaseBasketQuantity(int quantity) {
-        int basketQuantity = this.getBasketQuantity() - quantity;
-        this.setBasketQuantity(basketQuantity);
-    }
 }

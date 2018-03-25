@@ -1,5 +1,7 @@
 package models;
 
+import db.DBHelper;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,13 +13,15 @@ public class User {
     private String name;
     private String userName;
     private Basket basket;
+    private Order order;
     private List<PastOrder> pastOrders;
 
 
-    public User(String name, String userName) {
+    public User(String name, String userName, Basket basket) {
         this.name = name;
         this.userName = userName;
         this.basket = basket;
+        this.order = order;
         this.pastOrders = pastOrders;
 
     }
@@ -63,6 +67,15 @@ public class User {
         this.basket = basket;
     }
 
+    @Transient
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     @OneToMany(mappedBy = "user")
     public List<PastOrder> getPastOrders() {
         return pastOrders;
@@ -72,4 +85,9 @@ public class User {
         this.pastOrders = pastOrders;
     }
 
+    public void createOrder(Product product, int quantity) {
+        order = new Order(product, quantity);
+        DBHelper.save(order);
+        basket.addOrder(order);
+    }
 }

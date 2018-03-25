@@ -13,6 +13,9 @@ public class BasketTest {
 
     Basket basket;
     User user;
+    Order order1;
+    Order order2;
+    Order order3;
     Category category1;
     Category category2;
 
@@ -29,6 +32,7 @@ public class BasketTest {
     Product product6;
 
     List<Product> stock;
+    List<Order> orders;
     Shop shop;
 
     @Before
@@ -54,24 +58,35 @@ public class BasketTest {
         product5 = new Product("Permatrace", 1599, "You can certainly trace permanently on this.", subCategory3, shop);
         product6 = new Product("Line Level", 1599, "For level string, everytime.", subCategory4, shop);
 
-        basket = new Basket();
+        orders = new ArrayList<>();
+        basket = new Basket(orders);
 
-        user = new User("Jeff Bridges", "Jeffster72");
+        user = new User("Jeff Bridges", "Jeffster72", basket);
 
-        basket.addProduct(product1, 2);
+        order1 = new Order(product1, 2);
+        order2 = new Order(product2, 3);
+        order3 = new Order(product3, 1);
+
+        basket.addOrder(order1);
+        basket.addOrder(order2);
     }
 
     @Test
     public void canAddToBasket() {
-        basket.addProduct(product1, 1);
-        assertEquals(2, basket.productCount());
-        assertEquals(2, product1.getBasketQuantity());
+        basket.addOrder(order3);
+        assertEquals(3, basket.orderCount());
     }
 
     @Test
     public void canRemoveFromBasket() {
-        basket.removeProduct(product1, 1);
-        assertEquals(1, basket.productCount());
-        assertEquals(1, product1.getBasketQuantity());
+        basket.removeOrder(order1);
+        assertEquals(1, basket.orderCount());
+    }
+
+    @Test
+    public void canKeepTotalTradeAndVatCost() {
+        basket.adjustTotalCost();
+        assertEquals(7995, basket.getTotalTradeCost());
+        assertEquals(1595, basket.getTotalVatCost());
     }
 }
