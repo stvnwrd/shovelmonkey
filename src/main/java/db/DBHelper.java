@@ -1,14 +1,13 @@
 package db;
 
-import models.Category;
-import models.Product;
-import models.SubCategory;
+import models.*;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.eclipse.jetty.util.LazyList.getList;
@@ -132,5 +131,23 @@ public class DBHelper {
         return result;
     }
 
+    public static void createUser (String name, String username) {
+        Basket basket = new Basket();
+        User user = new User(name, username, basket);
+        DBHelper.save(user);
+        basket.setUser(user);
+        DBHelper.save(basket);
+    }
+
+
+    public static void createOrder (int userId, Product product, int quantity) {
+        User currentUser = DBHelper.find(User.class, userId);
+        Order order = new Order(product, quantity);
+        DBHelper.save(order);
+        currentUser.getBasket().addOrder(order);
+        currentUser.getBasket().adjustTotalItems();
+        currentUser.getBasket().adjustTotalCost();
+        DBHelper.save(currentUser);
+    }
 
 }

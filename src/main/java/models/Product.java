@@ -13,6 +13,7 @@ public class Product {
     private String name;
     private int price;
     private int vat;
+    private int totalPrice;
     private String blurb;
     private SubCategory subCategory;
     private Shop shop;
@@ -23,6 +24,7 @@ public class Product {
         this.name = name;
         this.price = price;
         this.vat = (int)(price * 0.2);
+        this.totalPrice = this.price + this.vat;
         this.blurb = blurb;
         this.subCategory = subCategory;
         this.shop = shop;

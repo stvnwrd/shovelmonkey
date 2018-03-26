@@ -58,8 +58,8 @@ public class BasketTest {
         product5 = new Product("Permatrace", 1599, "You can certainly trace permanently on this.", subCategory3, shop);
         product6 = new Product("Line Level", 1599, "For level string, everytime.", subCategory4, shop);
 
-        orders = new ArrayList<>();
-        basket = new Basket(orders);
+//        orders = new ArrayList<>();
+        basket = new Basket();
 
         user = new User("Jeff Bridges", "Jeffster72", basket);
 

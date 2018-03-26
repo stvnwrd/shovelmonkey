@@ -13,13 +13,15 @@ public class Basket {
     private List<Order> orders;
     private int totalTradeCost;
     private int totalVatCost;
+    private int totalCost;
     private int totalItems;
 
 
-    public Basket(List<Order> orders) {
+    public Basket() {
         this.orders = new ArrayList<>();
         this.totalTradeCost = 0;
         this.totalVatCost = 0;
+        this.totalCost = 0;
         this.totalItems = 0;
     }
 
@@ -72,6 +74,14 @@ public class Basket {
         this.totalVatCost = totalVatCost;
     }
 
+    public int getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(int totalCost) {
+        this.totalCost = totalCost;
+    }
+
     @Column(name="total_items")
     public int getTotalItems() {
         return totalItems;
@@ -102,6 +112,7 @@ public class Basket {
         }
         this.setTotalTradeCost(tradeResult);
         this.setTotalVatCost(vatResult);
+        this.setTotalCost(tradeResult + vatResult);
     }
 
     public void adjustTotalItems() {

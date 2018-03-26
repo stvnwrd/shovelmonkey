@@ -75,7 +75,7 @@ public class User {
         this.order = order;
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     public List<PastOrder> getPastOrders() {
         return pastOrders;
     }

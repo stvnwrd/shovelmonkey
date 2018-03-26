@@ -59,8 +59,8 @@ public class UserTest {
         product5 = new Product("Permatrace", 1599, "You can certainly trace permanently on this.", subCategory3, shop);
         product6 = new Product("Line Level", 1599, "For level string, everytime.", subCategory4, shop);
 
-        orders = new ArrayList<>();
-        basket = new Basket(orders);
+//        orders = new ArrayList<>();
+        basket = new Basket();
 
         user = new User("Jeff Bridges", "Jeffsky72", basket);
 
@@ -74,13 +74,13 @@ public class UserTest {
         assertEquals(2, user.getBasket().orderCount());
     }
 
-    @Test
-    public void canRemoveOrderFromBasket() {
-        user.createOrder(product4, 1);
-        user.createOrder(product2, 2);
-        assertEquals(2, user.getBasket().orderCount());
-        user.removeOrder(1);
-        assertEquals(1, user.getBasket().orderCount());
-
-    }
+//    @Test
+//    public void canRemoveOrderFromBasket() {
+//        user.createOrder(product4, 1);
+//        user.createOrder(product2, 2);
+//        assertEquals(2, user.getBasket().orderCount());
+//        user.removeOrder(1);
+//        assertEquals(1, user.getBasket().orderCount());
+//
+//    }
 }

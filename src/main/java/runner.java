@@ -1,8 +1,5 @@
 import db.DBHelper;
-import models.Category;
-import models.Product;
-import models.Shop;
-import models.SubCategory;
+import models.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,13 +59,27 @@ public class runner {
         shop.addToStock(product1, 3);
         DBHelper.save(product1);
 
+
+        DBHelper.createUser("Jess Bridges", "Jeffsky72");
+
+        DBHelper.createOrder(1, product1, 3);
+
+
+
         List<Product> allProducts = DBHelper.getAll(Product.class);
         List<Category> allCategories = DBHelper.getAll(Category.class);
         List<SubCategory> allSubCategories = DBHelper.getAll(SubCategory.class);
+        List<Product> allUsers = DBHelper.getAll(User.class);
+        List<Product> allBaskets = DBHelper.getAll(Basket.class);
+        List<Product> allOrders = DBHelper.getAll(Order.class);
+        List<Product> allShops = DBHelper.getAll(Shop.class);
+        List<Product> allPastOrders = DBHelper.getAll(PastOrder.class);
+
 
         Product foundProductById = DBHelper.find(Product.class, product1.getId());
         Category foundCategoryById = DBHelper.find(Category.class, category1.getId());
         SubCategory foundSubCategoryById = DBHelper.find(SubCategory.class, subCategory1.getId());
+        User foundUserById = DBHelper.find(User.class, 1);
 
         List<Product> productsBySubCat = DBHelper.findProductsBySubCategory(subCategory2);
         List<SubCategory> subCatsByCat = DBHelper.findSubCatsByCategory(category1);

@@ -32,7 +32,7 @@ public class Shop {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "shop")
+    @OneToMany(mappedBy = "shop", fetch = FetchType.EAGER)
     public List<Product> getStock() {
         return stock;
     }
