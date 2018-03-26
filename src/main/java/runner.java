@@ -84,5 +84,5 @@ public class runner {
         List<Product> productsBySubCat = DBHelper.findProductsBySubCategory(subCategory2);
         List<SubCategory> subCatsByCat = DBHelper.findSubCatsByCategory(category1);
 
-    }
+     }
 }

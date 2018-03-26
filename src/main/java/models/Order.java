@@ -10,6 +10,7 @@ public class Order {
     private int id;
     private Product product;
     private int quantity;
+    private Basket basket;
 
 
     public Order() {
@@ -18,6 +19,7 @@ public class Order {
     public Order(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
+        this.basket = basket;
     }
 
     @Id
@@ -31,7 +33,8 @@ public class Order {
         this.id = id;
     }
 
-    @Transient
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_id", nullable = false)
     public Product getProduct() {
         return product;
     }
@@ -49,4 +52,13 @@ public class Order {
         this.quantity = quantity;
     }
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "basket_id", nullable = false)
+    public Basket getBasket() {
+        return basket;
+    }
+
+    public void setBasket(Basket basket) {
+        this.basket = basket;
+    }
 }

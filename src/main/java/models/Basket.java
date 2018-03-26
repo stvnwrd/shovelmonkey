@@ -1,5 +1,8 @@
 package models;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +49,8 @@ public class Basket {
         this.user = user;
     }
 
-
-    @Transient
+    @OneToMany(mappedBy = "basket")
+    @LazyCollection(LazyCollectionOption.FALSE)
     public List<Order> getOrders() {
         return orders;
     }
@@ -74,6 +77,7 @@ public class Basket {
         this.totalVatCost = totalVatCost;
     }
 
+    @Column(name="total_cost")
     public int getTotalCost() {
         return totalCost;
     }

@@ -17,6 +17,7 @@ public class Product {
     private String blurb;
     private SubCategory subCategory;
     private Shop shop;
+    private List<Order> orders;
     private int stockQuantity;
 
 
@@ -28,6 +29,7 @@ public class Product {
         this.blurb = blurb;
         this.subCategory = subCategory;
         this.shop = shop;
+        this.orders = new ArrayList<>();
         this.stockQuantity = 0;
 
     }
@@ -73,6 +75,15 @@ public class Product {
         this.vat = vat;
     }
 
+    @Column(name = "total_price")
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     @Column(name = "blurb")
     public String getBlurb() {
         return blurb;
@@ -100,6 +111,15 @@ public class Product {
 
     public void setShop(Shop shop) {
         this.shop = shop;
+    }
+
+    @OneToMany(mappedBy = "product")
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Column(name="quantity")
