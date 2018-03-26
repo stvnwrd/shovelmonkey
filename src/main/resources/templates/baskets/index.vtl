@@ -15,8 +15,8 @@
         #foreach($basket in $baskets)
         <tr>
             <td>$basket.getUser()</td>
-            <td>$basket.getOrder()</td>
-            <td>$basket.getTradeCost()</td>
+            <td>$basket.getOrders()</td>
+            <td>$basket.getTotalTradeCost()</td>
             <td>$basket.getTotalVatCost()</td>
             <td>$basket.getTotalCost()</td>
             <td>$basket.getTotalItems()</td>
@@ -24,4 +24,16 @@
         </tr>
         #end
     </table>
+
+
+
+</div>
+
+<div>
+    <a href="/baskets/$basket.getId()/edit" class="button center">Edit</a>
+    <form action="/baskets/$basket.getId()/delete" method="post">
+        <input type="submit" value="Delete" class="button center">
+    </form>
+
+
 </div>
