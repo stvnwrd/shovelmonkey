@@ -9,15 +9,13 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class UserTest {
+public class BasketTest {
 
-
-
+    Basket basket;
     User user;
     Order order1;
     Order order2;
     Order order3;
-    Basket basket;
     Category category1;
     Category category2;
 
@@ -37,9 +35,9 @@ public class UserTest {
     List<Order> orders;
     Shop shop;
 
-
     @Before
     public void setUp() throws Exception {
+
 
         category1 = new Category("Excavation");
         category2 = new Category("Recording");
@@ -52,6 +50,7 @@ public class UserTest {
         stock = new ArrayList<>();
         shop = new Shop(stock);
 
+
         product1 = new Product("Trowel", 1599, "The finest archaeology trowel.", subCategory1, shop);
         product2 = new Product("Shovel", 1599, "For the best in shovelling.", subCategory2, shop);
         product3 = new Product("Spade", 1599, "This spade's great.", subCategory2, shop);
@@ -62,25 +61,38 @@ public class UserTest {
 //        orders = new ArrayList<>();
         basket = new Basket();
 
-        user = new User("Jeff Bridges", "Jeffsky72", basket);
+        user = new User("Jeff Bridges", "Jeffster72", basket);
 
+        order1 = new Order(product1, 2);
+        order2 = new Order(product2, 3);
+        order3 = new Order(product3, 1);
 
+        basket.addOrder(order1);
+        basket.addOrder(order2);
     }
 
     @Test
-    public void canCreateOrderAndAddToBasket() {
-        user.createOrder(product4, 1);
-        user.createOrder(product2, 2);
-        assertEquals(2, user.getBasket().orderCount());
+    public void canAddToBasket() {
+        basket.addOrder(order3);
+        assertEquals(3, basket.orderCount());
     }
 
-//    @Test
-//    public void canRemoveOrderFromBasket() {
-//        user.createOrder(product4, 1);
-//        user.createOrder(product2, 2);
-//        assertEquals(2, user.getBasket().orderCount());
-//        user.removeOrder(1);
-//        assertEquals(1, user.getBasket().orderCount());
-//
-//    }
+    @Test
+    public void canRemoveFromBasket() {
+        basket.removeOrder(order1);
+        assertEquals(1, basket.orderCount());
+    }
+
+    @Test
+    public void canKeepTotalTradeAndVatCost() {
+        basket.adjustTotalCost();
+        assertEquals(7995, basket.getTotalTradeCost());
+        assertEquals(1595, basket.getTotalVatCost());
+    }
+
+    @Test
+    public void canKeepTotalItems() {
+        basket.adjustTotalItems();
+        assertEquals(5, basket.getTotalItems());
+    }
 }

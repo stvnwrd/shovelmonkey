@@ -2,6 +2,8 @@ package models;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="products")
@@ -11,22 +13,24 @@ public class Product {
     private String name;
     private int price;
     private int vat;
+    private int totalPrice;
     private String blurb;
     private SubCategory subCategory;
     private Shop shop;
+    private List<Order> orders;
     private int stockQuantity;
-    private int basketQuantity;
 
 
     public Product(String name, int price, String blurb, SubCategory subCategory, Shop shop) {
         this.name = name;
         this.price = price;
         this.vat = (int)(price * 0.2);
+        this.totalPrice = this.price + this.vat;
         this.blurb = blurb;
         this.subCategory = subCategory;
         this.shop = shop;
+        this.orders = new ArrayList<>();
         this.stockQuantity = 0;
-        this.basketQuantity = 0;
 
     }
 
@@ -71,6 +75,15 @@ public class Product {
         this.vat = vat;
     }
 
+    @Column(name = "total_price")
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     @Column(name = "blurb")
     public String getBlurb() {
         return blurb;
@@ -100,6 +113,15 @@ public class Product {
         this.shop = shop;
     }
 
+    @OneToMany(mappedBy = "product")
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
     @Column(name="quantity")
     public int getStockQuantity() {
         return stockQuantity;
@@ -109,17 +131,15 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
 
-    public void adjustStockQuantity(int quantity) {
+
+    public void increaseStockQuantity(int quantity) {
         int stockQuantity = this.getStockQuantity() + quantity;
         this.setStockQuantity(stockQuantity);
     }
 
-    @Transient
-    public int getBasketQuantity() {
-        return basketQuantity;
+    public void decreaseStockQuantity(int quantity) {
+        int stockQuantity = this.getStockQuantity() - quantity;
+        this.setStockQuantity(stockQuantity);
     }
 
-    public void setBasketQuantity(int basketQuantity) {
-        this.basketQuantity = basketQuantity;
-    }
 }
