@@ -10,6 +10,7 @@ import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,41 @@ public class ProductsController {
             List<Product> products = DBHelper.getAll(Product.class);
             model.put("template", "templates/products/index.vtl");
             model.put("products", products);
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+
+        // index for cat
+
+        get("/products/category/:id", (req, res) -> {
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            Category category = DBHelper.find(Category.class, intId);
+            List<SubCategory> subCategories = DBHelper.findSubCatsByCategory(category);
+            List<Product> products = new ArrayList<>();
+            for (SubCategory subCategory : subCategories) {
+                List<Product> productsBySubCategory = DBHelper.findProductsBySubCategory(subCategory);
+                for (Product product : productsBySubCategory) {
+                    products.add(product);
+                }
+            }
+            Map<String, Object> model = new HashMap<>();
+            model.put("products", products);
+            model.put("template", "templates/products/showbycat.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+
+        // index for subcat
+
+        get("/products/subCategory/:id", (req, res) -> {
+            String strId = req.params(":id");
+            Integer intId = Integer.parseInt(strId);
+            SubCategory subCategory = DBHelper.find(SubCategory.class, intId);
+            List<Product> products = DBHelper.findProductsBySubCategory(subCategory);
+            Map<String, Object> model = new HashMap<>();
+            model.put("products", products);
+            model.put("template", "templates/products/showbysubcat.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
