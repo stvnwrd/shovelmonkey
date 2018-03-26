@@ -9,18 +9,19 @@
             <tr>
                 <th>Product</th>
                 <th>Description</th>
-                <!--<th>Trade Price</th>-->
+                <th>Price </th>
                 <th>VAT</th>
-                <th>Price (£)</th>
+                <th>Total Price (inc. VAT)</th>
+
                 <th></th>
             </tr>
             #foreach($product in $products)
                 <tr>
                     <td>$product.getName()</td>
                     <td>$product.getBlurb()</td>
-                    <!--<td>$product.getTradePrice()</td>-->
-                    <td>$product.getVat()</td>
                     <td>$product.getPrice()</td>
+                    <td>$product.getVat()</td>
+                    <td>$product.getTotalPrice()</td>
                     <td><a href="/products/$product.getId()" class="button center">Details</a></td>
                 </tr>
             #end
