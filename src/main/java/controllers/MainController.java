@@ -19,6 +19,7 @@ public class MainController {
 
         staticFileLocation("/public");
 
+        ProductsController productsController = new ProductsController();
 
 
         get("/", (req, res) -> {

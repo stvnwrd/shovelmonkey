@@ -1,0 +1,29 @@
+<h2>Products</h2>
+
+    <div>
+        <a href="/products/new">New Product</a>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Description</th>
+                <th>Price </th>
+                <th>VAT</th>
+                <th>Total Price (inc. VAT)</th>
+
+                <th></th>
+            </tr>
+            #foreach($product in $products)
+                <tr>
+                    <td>$product.getName()</td>
+                    <td>$product.getBlurb()</td>
+                    <td>$product.getPrice()</td>
+                    <td>$product.getVat()</td>
+                    <td>$product.getTotalPrice()</td>
+                    <td><a href="/products/$product.getId()" class="button center">Details</a></td>
+                </tr>
+            #end
+        </table>
+    </div>
