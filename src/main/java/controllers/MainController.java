@@ -1,6 +1,7 @@
 package controllers;
 
 import db.Seeds;
+import models.Basket;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -20,6 +21,7 @@ public class MainController {
         staticFileLocation("/public");
 
         ProductsController productsController = new ProductsController();
+        BasketsController basketsController = new BasketsController();
 
 
         get("/", (req, res) -> {

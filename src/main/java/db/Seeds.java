@@ -68,6 +68,8 @@ public class Seeds {
         subCategory3.addProduct(product5);
         subCategory4.addProduct(product6);
 
+        DBHelper.createUser("Harry", "Hal");
+
 
     }
 }

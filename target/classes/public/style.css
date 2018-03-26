@@ -1,3 +1,89 @@
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+}
 
+header .row {
+  border: 1px solid rgb(229, 222, 213);
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  margin: 0px -20px 0px -20px;
+  padding: 0 10px 15px 0;
+  background-color: white;
+  align-items: center;
+  font-family: arial;
+
+}
+
+header .second a {
+    font-size: 14px;
+}
+
+header .second {
+    padding-bottom: 3px;
+}
+
+
+
+
+header h2 {
+  font-size: 36px;
+  margin: 19px 50px 19px 5px;
+  color: rgb(117, 114, 110);
+}
+
+header h2 a {
+    padding-left: 15px;
+}
+
+
+header nav {
+  display: inline-flex;
+  justify-content: space-between;
+  margin-right: 50px;
+  margin-top: 22px;
+
+}
+
+header p {
+  font-size: 16px;
+  padding: 0 22px;
+  margin: 0;
+}
+
+
+
+a, a:link, a:visited {
+  color: rgb(117, 114, 110);
+  text-decoration: none;
+}
+
+a:hover, a:active, a:focus {
+  color: rgb(117, 180, 172);
+}
+
+.jumbotron {
+  display: flex;
+  border: 0;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  background-size: cover;
+  color: rgb(117, 114, 110);
+  height: 600px;
+  margin: 40px 40px 20px 40px;
+  padding: 0;
+  overflow-x: scroll;
+}
+
+.jumbotron .container-fluid {
+  margin: 5px
+  width: 100%;
+  text-align: center;
+}
 
 

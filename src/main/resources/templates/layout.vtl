@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Shovel Monkey</title>
-    <link href="/style.css" rel="stylesheet" type="text/css" />
+    <title>Shovelmonkey</title>
+    <meta charset="utf-8"/>
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
+
 <body>
-<!-- begin inner template-->
-<!--<p>Logged in as: $user <a href="/logout">Logout</a> <p>-->
-<p>Shovel Monkey Logo</p>
-<a href="/">Home</a>
-<a href="/products">Products</a>
+
+<header class="container-fluid">
+
+    <div class="row">
+        <h2 class="col-sm-2"><a href="/">Shovelmonkey</a></h2>
+        <nav class="col-sm-3 col-sm-offset-6 text-center">
+            <p><a href="/products">Products</a></p>
+            <p><a href="/login">LogIn</a></p>
+            <p><a href="/baskets"><i class="fas fa-shopping-basket"></i></a></p>
+        </nav>
+    </div>
+
+    <div class="row second">
+        <p class="col-sm-3 text-center"><a href="#">Excavation</a></p>
+        <p class="col-sm-3 text-center"><a href="#">Drawing and Recording</a></p>
+        <p class="col-sm-3 text-center"><a href="#">Finds & Storage</a></p>
+        <p class="col-sm-3 text-center"><a href="#">Survey & Measure</a></p>
+
+    </div>
+
+</header>
 
 
 
-<div class="container">
-    #parse( $template )
-</div>
-<!-- end inner template-->
+<section class="jumbotron">
+    <div class="container-fluid" style="width: 1300px">
+        #parse( $template )
+    </div>
+</section>
+
 </body>
+
+
 </html>
