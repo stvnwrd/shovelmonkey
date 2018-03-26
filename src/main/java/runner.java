@@ -74,5 +74,9 @@ public class runner {
         List<Product> productsBySubCat = DBHelper.findProductsBySubCategory(subCategory2);
         List<SubCategory> subCatsByCat = DBHelper.findSubCatsByCategory(category1);
 
+
+        product1.setName("Hiya");
+        DBHelper.save(product1);
+
     }
 }

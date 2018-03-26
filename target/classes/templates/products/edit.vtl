@@ -3,13 +3,13 @@
 <form action="/products/$product.getId()" method="post">
 
     <label for="item">Item:</label>
-    <input id="item" type="text" name="item" required="true" value="$product.getName()">
+    <input id="item" type="text" name="name" required="true" value="$product.getName()">
 
     <label for="description">Description:</label>
-    <input id="description" type="text" name="description" required="true" value="$product.getBlurb()">
+    <input id="description" type="text" name="blurb" required="true" value="$product.getBlurb()">
 
     <label for="price">Price:</label>
-    <input id="price" type="number" required="true" class="inputbox" value="$product.getPrice()">
+    <input id="price" type="number" name="price" required="true" class="inputbox" value="$product.getPrice()">
 
     <label for="subCategory">Subcategory:</label>
     <select id="subCategory" name="subCategory">
@@ -18,7 +18,7 @@
                 #if ($subCategory.getId() == $product.getSubCategory().getId())
                     selected = "selected"
                 #end>
-                $subCategory().getTitle()</option>
+                $subCategory.getTitle()</option>
         #end
     </select>
 
@@ -29,7 +29,7 @@
                 #if ($shop.getId() == $product.getShop().getId())
                 selected = "selected"
                 #end>
-            $shop().getId()</option>
+            $shop.getId()</option>
         #end
     </select>
 
