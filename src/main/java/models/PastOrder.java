@@ -1,7 +1,6 @@
 package models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -12,7 +11,6 @@ public class PastOrder {
     private int id;
     private User user;
     private GregorianCalendar date;
-    private List<Product> products;
 
     public PastOrder() {
     }
@@ -20,7 +18,6 @@ public class PastOrder {
     public PastOrder(User user, GregorianCalendar date, List<Product> products) {
         this.user = user;
         this.date = date;
-        this.products = new ArrayList<>();
     }
 
 
@@ -54,13 +51,4 @@ public class PastOrder {
         this.date = date;
     }
 
-    @OneToMany
-    @Column(name="products")
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
 }

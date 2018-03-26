@@ -35,9 +35,10 @@ public class ShopTest {
 
     @Before
     public void setUp() throws Exception {
+
+
         category1 = new Category("Excavation");
         category2 = new Category("Recording");
-
 
         subCategory1 = new SubCategory("Trowels and Small Tools", category1);
         subCategory2 = new SubCategory("Spades, Shovels and Mattocks", category1);
@@ -46,7 +47,7 @@ public class ShopTest {
 
         stock = new ArrayList<>();
         shop = new Shop(stock);
-        shop.addToStock(product1, 1);
+
 
         product1 = new Product("Trowel", 1599, "The finest archaeology trowel.", subCategory1, shop);
         product2 = new Product("Shovel", 1599, "For the best in shovelling.", subCategory2, shop);
@@ -55,16 +56,23 @@ public class ShopTest {
         product5 = new Product("Permatrace", 1599, "You can certainly trace permanently on this.", subCategory3, shop);
         product6 = new Product("Line Level", 1599, "For level string, everytime.", subCategory4, shop);
 
-        stock = new ArrayList<>();
-        shop = new Shop(stock);
+
         shop.addToStock(product1, 1);
+        shop.addToStock(product2, 3);
     }
 
 
     @Test
     public void canAddToStock() {
-        shop.addToStock(product2, 3);
         assertEquals(4, shop.stockCount());
+        assertEquals(1, product1.getStockQuantity());
+    }
+
+    @Test
+    public void canReduceStock() {
+        shop.reduceStock(product2, 1);
+        assertEquals(3, shop.stockCount());
+        assertEquals(2, product2.getStockQuantity());
     }
 
 

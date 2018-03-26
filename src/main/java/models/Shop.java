@@ -32,7 +32,7 @@ public class Shop {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "shop")
+    @OneToMany(mappedBy = "shop", fetch = FetchType.EAGER)
     public List<Product> getStock() {
         return stock;
     }
@@ -49,11 +49,13 @@ public class Shop {
         for(int i=0;i<quantity;i++){
             stock.add(product);
         }
+        product.increaseStockQuantity(quantity);
     }
 
-    public void removeFromStock (Product product) {
-        stock.remove(product);
-        DBHelper.delete(product);
+    public void reduceStock (Product product, int quantity) {
+        for (int i = 0; i < quantity; i++) {
+            stock.remove(product);
+        }
+        product.decreaseStockQuantity(quantity);
     }
-
 }

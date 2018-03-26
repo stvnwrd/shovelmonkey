@@ -21,6 +21,6 @@
         <mapping class = "models.Shop"/>
         <mapping class = "models.Basket"/>
         <mapping class = "models.PastOrder"/>
-
+        <mapping class = "models.Order"/>
     </session-factory>
 </hibernate-configuration>

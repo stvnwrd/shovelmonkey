@@ -1,5 +1,7 @@
 package models;
 
+import db.DBHelper;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,10 +13,11 @@ public class User {
     private String name;
     private String userName;
     private Basket basket;
+    private Order order;
     private List<PastOrder> pastOrders;
 
 
-    public User(String name, String userName) {
+    public User(String name, String userName, Basket basket) {
         this.name = name;
         this.userName = userName;
         this.basket = basket;
@@ -54,7 +57,7 @@ public class User {
         this.userName = userName;
     }
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
     public Basket getBasket() {
         return basket;
     }
@@ -63,7 +66,16 @@ public class User {
         this.basket = basket;
     }
 
-    @OneToMany(mappedBy = "user")
+    @Transient
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     public List<PastOrder> getPastOrders() {
         return pastOrders;
     }
@@ -72,4 +84,14 @@ public class User {
         this.pastOrders = pastOrders;
     }
 
+    public void createOrder(Product product, int quantity) {
+        order = new Order(product, quantity);
+        DBHelper.save(order);
+        basket.addOrder(order);
+    }
+
+    public void removeOrder(int id) {
+       Order orderToRemove = DBHelper.find(Order.class, id);
+       basket.removeOrder(orderToRemove);
+    }
 }
