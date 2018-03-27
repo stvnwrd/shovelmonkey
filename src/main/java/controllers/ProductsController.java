@@ -43,6 +43,7 @@ public class ProductsController {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Category category = DBHelper.find(Category.class, intId);
+            SubCategory blankSub = new SubCategory(" ", category);
             List<SubCategory> subCategories = DBHelper.findSubCatsByCategory(category);
             List<Product> products = new ArrayList<>();
             for (SubCategory subCategory : subCategories) {
@@ -52,6 +53,8 @@ public class ProductsController {
                 }
             }
             Map<String, Object> model = new HashMap<>();
+            model.put("subCategory", blankSub);
+            model.put("category", category);
             model.put("products", products);
             model.put("template", "templates/products/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
@@ -64,8 +67,11 @@ public class ProductsController {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             SubCategory subCategory = DBHelper.find(SubCategory.class, intId);
+            Category category = subCategory.getCategory();
             List<Product> products = DBHelper.findProductsBySubCategory(subCategory);
             Map<String, Object> model = new HashMap<>();
+            model.put("subCategory", category);
+            model.put("category", category);
             model.put("products", products);
             model.put("template", "templates/products/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
@@ -100,9 +106,10 @@ public class ProductsController {
             String name = req.queryParams("name");
             String blurb = req.queryParams("blurb");
             int price = Integer.parseInt(req.queryParams("price"));
+            String image = req.queryParams("image");
 
 
-            Product product = new Product(name, price, blurb, subCategory, shop);
+            Product product = new Product(name, price, blurb, subCategory, image, shop);
 
             // need to look at shop here
 
@@ -122,8 +129,15 @@ public class ProductsController {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Product product = DBHelper.find(Product.class, intId);
+            List<Integer> numbers = new ArrayList<>();
+            for (int i = 1; i <= product.getStockQuantity(); i++) {
+                numbers.add(i);
+            }
+
             Map<String, Object> model = new HashMap<>();
+
             model.put("product", product);
+            model.put("numbers", numbers);
             model.put("template", "templates/products/show.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
