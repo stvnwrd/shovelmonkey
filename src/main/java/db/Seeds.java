@@ -45,20 +45,21 @@ public class Seeds {
         category2.addSubCategory(subCategory3);
         category2.addSubCategory(subCategory4);
 
-        Shop shop = new Shop();
+        List<Product> stock = new ArrayList<>();
+        Shop shop = new Shop(stock);
         DBHelper.save(shop);
 
-        Product product1 = new Product("Trowel", 1599, "The finest archaeology trowel.", subCategory1, shop);
+        Product product1 = new Product("Trowel", 1599, "The finest archaeology trowel.", subCategory1, "/images/trowel.png", shop);
         DBHelper.save(product1);
-        Product product2 = new Product("Shovel", 1599, "For the best in shovelling.", subCategory2, shop);
+        Product product2 = new Product("Shovel", 1599, "For the best in shovelling.", subCategory2, "/images/shovel.png", shop);
         DBHelper.save(product2);
-        Product product3 = new Product("Spade", 1599, "This spade's great.", subCategory2, shop);
+        Product product3 = new Product("Spade", 1599, "This spade's great.", subCategory2, "/images/spade.png", shop);
         DBHelper.save(product3);
-        Product product4 = new Product("Mattock", 1599, "Mattock like a champ!", subCategory2, shop);
+        Product product4 = new Product("Mattock", 1599, "Mattock like a champ!", subCategory2, "/images/mattock.png", shop);
         DBHelper.save(product4);
-        Product product5 = new Product("Permatrace", 1599, "You can certainly trace permanently on this.", subCategory3, shop);
+        Product product5 = new Product("Permatrace", 1599, "You can certainly trace permanently on this.", subCategory3, "/images/permatrace.png", shop);
         DBHelper.save(product5);
-        Product product6 = new Product("Line Level", 1599, "For level string, everytime.", subCategory4, shop);
+        Product product6 = new Product("Line Level", 1599, "For level string, everytime.", subCategory4, "/images/linelevel.png", shop);
         DBHelper.save(product6);
 
         subCategory1.addProduct(product1);
@@ -69,6 +70,19 @@ public class Seeds {
         subCategory4.addProduct(product6);
 
         DBHelper.createUser("Harry", "Hal");
+
+        shop.addToStock(product1, 10);
+        DBHelper.save(product1);
+        shop.addToStock(product2, 10);
+        DBHelper.save(product2);
+        shop.addToStock(product3, 10);
+        DBHelper.save(product3);
+        shop.addToStock(product4, 10);
+        DBHelper.save(product4);
+        shop.addToStock(product5, 10);
+        DBHelper.save(product5);
+        shop.addToStock(product6, 10);
+        DBHelper.save(product6);
 
 
     }

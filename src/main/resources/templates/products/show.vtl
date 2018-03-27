@@ -1,21 +1,35 @@
-<div>
-    <p> Category: $product.getSubCategory().getCategory().getTitle()</p>
-    <p> Sub-Category: $product.getSubCategory().getTitle()</p>
-    <p> Item: $product.getName()</p>
-    <p> Description: $product.getBlurb()</p>
-    <p> Price: $product.getPrice()</p>
-    <p> VAT: $product.getVat()</p>
-    <p> Total Price (inc. VAT): $product.getTotalPrice()</p>
+<div class="show">
 
-</div>
+    <div class="row pre">
+        <a href="/products/subCategory/$product.getSubCategory().getId()" class="button center">$product.getSubCategory().getTitle()</a>
+    </div>
 
-<div>
-    <a href="/products/$product.getId()/edit" class="button center">Edit</a>
-    <form action="/products/$product.getId()/delete" method="post">
-        <input type="submit" value="Delete" class="button center">
-    </form>
-    <a href="/products" class="button center">Back to Products List</a>
+    <div class="row first">
+        <p class="col-sm-3">$product.getName()</p>
+    </div>
 
+    <div class="row second">
+        <img class="col-sm-3" src="$product.getImage()" height="300" width="350" style="float: left">
+        <div class="col-sm-3">
+            <p class="price"> Price: £$product.decimalFormat($product.getPrice())</p>
+            <p class="vat"> VAT: £$product.decimalFormat($product.getVat())</p>
+            <p class="total"> Total Price: £$product.decimalFormat($product.getTotalPrice())</p>
+            <button type="button" class="btn btn-default btn-sm btn3d addtobasket">Add To Basket</button>
+            <label for="quantity">Quantity:</label>
+            <select id="quantity" name="quantity">
+                #foreach($number in $numbers) {
+                    <option value="$number">$number</option>
+                }
+                #end
+            </select>
+        </div>
+
+    </div>
+
+
+    <div class="row third">
+        <p class="description"> $product.getBlurb()</p>
+    </div>
 
 
 </div>

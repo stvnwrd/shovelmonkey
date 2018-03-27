@@ -19,15 +19,17 @@ public class Product {
     private Shop shop;
     private List<Order> orders;
     private int stockQuantity;
+    private String image;
 
 
-    public Product(String name, int price, String blurb, SubCategory subCategory, Shop shop) {
+    public Product(String name, int price, String blurb, SubCategory subCategory, String image, Shop shop) {
         this.name = name;
         this.price = price;
         this.vat = (int)(price * 0.2);
         this.totalPrice = this.price + this.vat;
         this.blurb = blurb;
         this.subCategory = subCategory;
+        this.image = image;
         this.shop = shop;
         this.orders = new ArrayList<>();
         this.stockQuantity = 0;
@@ -103,6 +105,15 @@ public class Product {
         this.subCategory = subCategory;
     }
 
+    @Column(name="image")
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "shop_id", nullable = false)
     public Shop getShop() {
@@ -135,11 +146,19 @@ public class Product {
     public void increaseStockQuantity(int quantity) {
         int stockQuantity = this.getStockQuantity() + quantity;
         this.setStockQuantity(stockQuantity);
+
     }
 
     public void decreaseStockQuantity(int quantity) {
         int stockQuantity = this.getStockQuantity() - quantity;
         this.setStockQuantity(stockQuantity);
+
     }
+
+    public double decimalFormat(int amount) {
+       double result = amount / 100.0;
+       return result;
+    }
+
 
 }
