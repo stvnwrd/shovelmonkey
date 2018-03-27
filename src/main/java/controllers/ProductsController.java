@@ -43,6 +43,7 @@ public class ProductsController {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             Category category = DBHelper.find(Category.class, intId);
+            SubCategory blankSub = new SubCategory(" ", category);
             List<SubCategory> subCategories = DBHelper.findSubCatsByCategory(category);
             List<Product> products = new ArrayList<>();
             for (SubCategory subCategory : subCategories) {
@@ -52,6 +53,8 @@ public class ProductsController {
                 }
             }
             Map<String, Object> model = new HashMap<>();
+            model.put("category", category);
+            model.put("subCategory", blankSub);
             model.put("products", products);
             model.put("template", "templates/products/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
@@ -64,8 +67,11 @@ public class ProductsController {
             String strId = req.params(":id");
             Integer intId = Integer.parseInt(strId);
             SubCategory subCategory = DBHelper.find(SubCategory.class, intId);
+            Category category = subCategory.getCategory();
             List<Product> products = DBHelper.findProductsBySubCategory(subCategory);
             Map<String, Object> model = new HashMap<>();
+            model.put("category", category);
+            model.put("subCategory", subCategory);
             model.put("products", products);
             model.put("template", "templates/products/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");

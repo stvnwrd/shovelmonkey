@@ -96,4 +96,32 @@ div .home h1 {
     font-size: 20px;
 }
 
+.index{
+
+
+}
+
+
+.item_header {
+    font-size: 18px;
+}
+
+.table-item-detail {
+    text-align: justify;
+    margin: 5px;
+}
+
+td {
+    padding: 1px;
+}
+
+.table-price {
+    text-align: right;
+    padding-left: 40px;
+}
+
+.button-overrule {
+    margin-top: 10px;
+}
+
 

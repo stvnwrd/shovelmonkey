@@ -1,31 +1,55 @@
-<h2>Products</h2>
+<div class="index">
+
+
+    <h2>$category.getTitle()</h2>
+
+    <h2>$subCategory.getTitle()</h2>
+
 
     <div>
-        <a href="/products/new">New Product</a>
-    </div>
+        #foreach($product in $products)
 
-    <div>
-        <table>
-            <tr>
-                <th>Product</th>
-                <th>Description</th>
-                <th>Price </th>
-                <th>VAT</th>
-                <th>Total Price (inc. VAT)</th>
+        <div class="col-sm-3">
+            <table>
+                <a href="/products/$product.getId()" class="button center">
+                    <div class="thumbnail">
+                        <img src="/images/trowel.png" alt="">
+                    </div>
+                </a>
 
-                <th></th>
-            </tr>
-            #foreach($product in $products)
-                <tr>
-                    <td>$product.getName()</td>
-                    <td>$product.getBlurb()</td>
-                    <td>$product.getPrice()</td>
-                    <td>$product.getVat()</td>
-                    <td>$product.getTotalPrice()</td>
-                    <td><a href="/products/$product.getId()" class="button center">Details</a></td>
-                </tr>
+                <table class="table-item-detail">
+
+                    <tr>
+                        <td class="item_header">$product.getName()</td>
+                    </tr>
+
+                    <tr>
+                        <td>Price: </td>
+                        <td class="table-price">$product.getPrice()</td>
+                    </tr>
+
+                    <tr>
+                        <td>VAT: </td>
+                        <td class="table-price">$product.getVat()</td>
+                    </tr>
+
+                    <tr>
+                        <td>Total Price: </td>
+                        <td class="table-price">$product.getTotalPrice()</td>
+                    </tr>
+
+
+                    <td><a href="/products/$product.getId()" class="btn btn-info btn-sm button-overrule">Details</a></td>
+                </table>
+            </table>
+        </div>
+
             #end
-        </table>
 
-        <img src="/images/trowel.png" alt="">
     </div>
+
+    </div>
+
+
+</div>
+
