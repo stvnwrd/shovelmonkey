@@ -46,55 +46,56 @@ public class BasketsController {
         }, new VelocityTemplateEngine());
 
 
-
-        // edit
-
-        get("/baskets/:id/edit", (req, res) -> {
-            String strId = req.params(":id");
-            Integer intId = Integer.parseInt(strId);
-            Basket basket = DBHelper.find(Basket.class, intId);
-            List<Order> orders = DBHelper.getAll(Order.class);
-
-            Map<String, Object> model = new HashMap<>();
-
-            model.put("orders", orders)
-            model.put("template", "templates/baskets/edit.vtl");
-            model.put("basket", basket);
-            return new ModelAndView(model, "templates/layout.vtl");
-        }, new VelocityTemplateEngine());
-
-
-
-        // update
-
-        post ("/baskets/:id", (req, res) -> {
-            String strId = req.params(":id");
-            Integer intId = Integer.parseInt(strId);
-            Basket basket = DBHelper.find(Basket.class, intId);
-            String user = req.queryParams("user");
-            int orderId = Integer.parseInt(req.queryParams("order"));
-            Order orders = DBHelper.find(Order.class, orderId);
-            int totalTradeCost = Integer.parseInt(req.queryParams("totalTradeCost"));
-            int totalVatCost = Integer.parseInt(req.queryParams("totalVatCost"));
-            int totalCost = Integer.parseInt(req.queryParams("totalCost"));
-            int totalItems = Integer.parseInt(req.queryParams("totalItems"));
-
-            basket.setUser(user);
-            basket.setOrders(orders);
-            basket.setTotalTradeCost(totalTradeCost);
-            basket.setTotalVatCost(totalVatCost);
-            basket.setTotalCost(totalCost);
-            basket.setTotalItems(totalItems);
-
-            DBHelper.save(basket);
-            res.redirect("/baskets");
-            return null;
-
-        }, new VelocityTemplateEngine());
-
-
-
-
+//   PLACEHOLDER ROUTES PROBABLY NOT NEEDED
+//
+//        // edit
+//
+//        get("/baskets/:id/edit", (req, res) -> {
+//            String strId = req.params(":id");
+//            Integer intId = Integer.parseInt(strId);
+//            Basket basket = DBHelper.find(Basket.class, intId);
+//            List<Order> orders = DBHelper.getAll(Order.class);
+//
+//            Map<String, Object> model = new HashMap<>();
+//
+//            model.put("orders", orders);
+//            model.put("template", "templates/baskets/edit.vtl");
+//            model.put("basket", basket);
+//            return new ModelAndView(model, "templates/layout.vtl");
+//        }, new VelocityTemplateEngine());
+//
+//
+//
+//        // update
+//
+//        post ("/baskets/:id", (req, res) -> {
+//            String strId = req.params(":id");
+//            Integer intId = Integer.parseInt(strId);
+//            Basket basket = DBHelper.find(Basket.class, intId);
+//            String user = req.queryParams("user");
+//            int orderId = Integer.parseInt(req.queryParams("order"));
+//            Order orders = DBHelper.find(Order.class, orderId);
+//            int totalTradeCost = Integer.parseInt(req.queryParams("totalTradeCost"));
+//            int totalVatCost = Integer.parseInt(req.queryParams("totalVatCost"));
+//            int totalCost = Integer.parseInt(req.queryParams("totalCost"));
+//            int totalItems = Integer.parseInt(req.queryParams("totalItems"));
+//
+//            basket.setUser(user);
+//            basket.setOrders(orders);
+//            basket.setTotalTradeCost(totalTradeCost);
+//            basket.setTotalVatCost(totalVatCost);
+//            basket.setTotalCost(totalCost);
+//            basket.setTotalItems(totalItems);
+//
+//            DBHelper.save(basket);
+//            res.redirect("/baskets");
+//            return null;
+//
+//        }, new VelocityTemplateEngine());
+//
+//
+//
+//
 
 
 
