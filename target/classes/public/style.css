@@ -1,4 +1,5 @@
 body {
+  background-color: rgb(247, 245, 242);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -25,10 +26,9 @@ header .second a {
 }
 
 header .second {
-    padding-bottom: 3px;
+    padding-top: 4px;
+    height: 30px;
 }
-
-
 
 
 header h2 {
@@ -38,7 +38,12 @@ header h2 {
 }
 
 header h2 a {
-    padding-left: 15px;
+    padding-left: 80px;
+}
+
+header nav a i {
+    height: 40px;
+    width: 40px;
 }
 
 
@@ -46,7 +51,7 @@ header nav {
   display: inline-flex;
   justify-content: space-between;
   margin-right: 50px;
-  margin-top: 22px;
+  margin-top: 30px;
 
 }
 
@@ -67,6 +72,7 @@ a:hover, a:active, a:focus {
   color: rgb(117, 180, 172);
 }
 
+
 .jumbotron {
   display: flex;
   border: 0;
@@ -74,8 +80,8 @@ a:hover, a:active, a:focus {
   background-color: rgba(255, 255, 255, 0.8);
   background-size: cover;
   color: rgb(117, 114, 110);
-  height: 600px;
-  margin: 40px 40px 20px 40px;
+  height: 650px;
+  margin: 20px 40px 20px 40px;
   padding: 0;
   overflow-x: scroll;
 }
@@ -84,6 +90,10 @@ a:hover, a:active, a:focus {
   margin: 5px
   width: 100%;
   text-align: center;
+}
+
+div .home h1 {
+    font-size: 20px;
 }
 
 

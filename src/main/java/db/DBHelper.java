@@ -121,6 +121,8 @@ public class DBHelper {
         return result;
     }
 
+
+
     public static List<SubCategory> findSubCatsByCategory(Category category) {
         session = HibernateUtil.getSessionFactory().openSession();
         List<SubCategory> result = null;
