@@ -53,8 +53,8 @@ public class ProductsController {
                 }
             }
             Map<String, Object> model = new HashMap<>();
-            model.put("subCategory", blankSub);
             model.put("category", category);
+            model.put("subCategory", blankSub);
             model.put("products", products);
             model.put("template", "templates/products/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
@@ -70,8 +70,8 @@ public class ProductsController {
             Category category = subCategory.getCategory();
             List<Product> products = DBHelper.findProductsBySubCategory(subCategory);
             Map<String, Object> model = new HashMap<>();
-            model.put("subCategory", category);
             model.put("category", category);
+            model.put("subCategory", subCategory);
             model.put("products", products);
             model.put("template", "templates/products/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
