@@ -142,8 +142,8 @@ public class DBHelper {
     }
 
 
-    public static void createOrder (int userId, Product product, int quantity) {
-        User currentUser = DBHelper.find(User.class, userId);
+    public static void createOrder (User user, Product product, int quantity) {
+        User currentUser = DBHelper.find(User.class, user.getId());
         Order order = new Order(product, quantity);
         order.setBasket(currentUser.getBasket());
         DBHelper.save(order);

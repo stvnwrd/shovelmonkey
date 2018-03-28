@@ -14,7 +14,15 @@
             <p class="price"> Price: £$product.decimalFormat($product.getPrice())</p>
             <p class="vat"> VAT: £$product.decimalFormat($product.getVat())</p>
             <p class="total"> Total Price: £$product.decimalFormat($product.getTotalPrice())</p>
-            <button type="button" class="btn btn-default btn-sm btn3d addtobasket">Add To Basket</button>
+
+            <form action="/baskets/orders" method="post">
+                <input type="hidden" name="product" value="$product.getId()">
+                <input type="hidden" name="quantity" value="quantity">
+                <input type="submit" value="Add To Basket" class="button">
+            </form>
+
+
+
             <label for="quantity">Quantity:</label>
             <select id="quantity" name="quantity">
                 #foreach($number in $numbers) {
@@ -33,3 +41,4 @@
 
 
 </div>
+
