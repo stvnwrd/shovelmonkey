@@ -2,7 +2,9 @@ package models;
 
 
 import javax.persistence.*;
+import java.text.Format;
 import java.util.ArrayList;
+import java.util.Formattable;
 import java.util.List;
 
 @Entity
@@ -155,10 +157,10 @@ public class Product {
 
     }
 
-    public double decimalFormat(int amount) {
-       double result = amount / 100.0;
-       return result;
+    public String decimalFormat(int amount) {
+        return String.format("%.2f", (amount / 100.0));
     }
+
 
 
 }
