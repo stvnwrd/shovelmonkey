@@ -2,10 +2,7 @@ package controllers;
 
 
 import  db.DBHelper;
-import models.Category;
-import models.Product;
-import models.Shop;
-import models.SubCategory;
+import models.*;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -31,6 +28,8 @@ public class ProductsController {
         get("/products", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Product> products = DBHelper.getAll(Product.class);
+            User loggedInUser = LoginController.getLoggedInUserName(req, res);
+            model.put("user", loggedInUser);
             model.put("template", "templates/products/index.vtl");
             model.put("products", products);
             return new ModelAndView(model, "templates/layout.vtl");
@@ -53,6 +52,8 @@ public class ProductsController {
                 }
             }
             Map<String, Object> model = new HashMap<>();
+            User loggedInUser = LoginController.getLoggedInUserName(req, res);
+            model.put("user", loggedInUser);
             model.put("category", category);
             model.put("subCategory", blankSub);
             model.put("products", products);
@@ -70,6 +71,8 @@ public class ProductsController {
             Category category = subCategory.getCategory();
             List<Product> products = DBHelper.findProductsBySubCategory(subCategory);
             Map<String, Object> model = new HashMap<>();
+            User loggedInUser = LoginController.getLoggedInUserName(req, res);
+            model.put("user", loggedInUser);
             model.put("category", category);
             model.put("subCategory", subCategory);
             model.put("products", products);
@@ -135,7 +138,8 @@ public class ProductsController {
             }
 
             Map<String, Object> model = new HashMap<>();
-
+            User loggedInUser = LoginController.getLoggedInUserName(req, res);
+            model.put("user", loggedInUser);
             model.put("product", product);
             model.put("numbers", numbers);
             model.put("template", "templates/products/show.vtl");
