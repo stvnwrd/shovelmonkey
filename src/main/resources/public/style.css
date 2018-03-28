@@ -208,5 +208,29 @@ td {
 }
 
 .button-overrule {
-    margin-top: 10px;
+    margin-top: 20px;
 }
+
+#img-standard-height {
+    height: 300px;
+}
+
+.landing-img {
+    color: rgb(89, 84, 51);
+    position: relative;
+    min-height: 550px;
+    background: url("/images/russ-mccabe-5461-unsplash.jpg") no-repeat scroll 0px 100% / cover transparent;
+}
+
+#landing-title {
+    color: white;
+    font-size: 72px;
+    padding-top: 200px;
+}
+
+.category-locator {
+    text-align: left;
+    padding-bottom: 20px;
+
+}
+
