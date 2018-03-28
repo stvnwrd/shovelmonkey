@@ -102,7 +102,7 @@ public class ProductsController {
 
         post ("/products", (req, res) -> {
             int shopId = Integer.parseInt(req.queryParams("shop"));
-           Shop shop = DBHelper.find(Shop.class, shopId);
+            Shop shop = DBHelper.find(Shop.class, shopId);
             int subCategoryId = Integer.parseInt(req.queryParams("subCategory"));
             SubCategory subCategory = DBHelper.find(SubCategory.class, subCategoryId);
 
