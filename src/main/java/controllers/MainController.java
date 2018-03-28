@@ -2,6 +2,7 @@ package controllers;
 
 import db.Seeds;
 import models.Basket;
+import models.LogIn;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -22,6 +23,7 @@ public class MainController {
 
         ProductsController productsController = new ProductsController();
         BasketsController basketsController = new BasketsController();
+        LoginController loginController = new LoginController();
 
 
         get("/", (req, res) -> {

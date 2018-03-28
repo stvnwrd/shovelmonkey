@@ -5,6 +5,7 @@ import models.*;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,37 @@ public class BasketsController {
             model.put("baskets", baskets);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
+
+
+       // show all baskets by id
+
+//        get("/baskets/:id")
+
+
+
+
+
+        //post
+
+
+        post ("/baskets/orders", (req, res) -> {
+            int user = Integer.parseInt(req.queryParams("user"));
+            int Product
+            Product product = DBHelper.find(Product.class, productId);
+            int quantity = Integer.parseInt(req.queryParams("quantity"));
+
+
+            Basket basket = new Product();
+
+
+            DBHelper.save(basket);
+            res.redirect("/baskets");
+            return null;
+
+        },new VelocityTemplateEngine());
+
+
 
 
 
