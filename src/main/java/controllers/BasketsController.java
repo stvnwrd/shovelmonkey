@@ -23,11 +23,15 @@ public class BasketsController {
 
         // index
 
-        get("/baskets", (req, res) -> {
+        get("/baskets/orders", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Basket> baskets = DBHelper.getAll(Basket.class);
+            User loggedInUser = LoginController.getLoggedInUserName(req, res);
+            Basket basket = loggedInUser.getBasket();
+            List<Order> orders = basket.getOrders();
             model.put("template", "templates/baskets/index.vtl");
-            model.put("baskets", baskets);
+            model.put("basket", basket);
+            model.put("orders", orders);
+            model.put("user", loggedInUser);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 

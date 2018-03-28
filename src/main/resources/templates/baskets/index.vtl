@@ -4,24 +4,22 @@
 <div>
     <table>
         <tr>
-            <th>User</th>
-            <th>Orders</th>
-            <th>Total Trade Cost</th>
-            <th>Total VAT</th>
-            <th>Total Cost (inc. VAT)</th>
-            <th>Total Items</th>
-            <th></th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+
         </tr>
-        #foreach($basket in $baskets)
+        #foreach($order in $orders)
         <tr>
-            <td>$basket.getUser()</td>
-            <td>$basket.getOrder()</td>
-            <td>$basket.getTradeCost()</td>
-            <td>$basket.getTotalVatCost()</td>
-            <td>$basket.getTotalCost()</td>
-            <td>$basket.getTotalItems()</td>
+            <td>$order.getProduct().getName()</td>
+            <td>$order.getQuantity()</td>
+            <td>£$order.getProduct().decimalFormat($order.getProduct().getTotalPrice())</td>
 
         </tr>
         #end
     </table>
+
+    <p>$basket.getTotalVatCost()</p>
+    <p>$basket.getTotalCost()</p>
+    <p>$basket.getTotalItems()</p>
 </div>
