@@ -1,9 +1,6 @@
 package db;
 
-import models.Category;
-import models.Product;
-import models.Shop;
-import models.SubCategory;
+import models.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,6 +137,8 @@ public class Seeds {
         subCategory13.addProduct(product21);
 
         DBHelper.createUser("Mortimer Wheeler", "SirMorty1872");
+        List<User> allUsers = DBHelper.getAll(User.class);
+        User user = allUsers.get(0);
 
         shop.addToStock(product1, 10);
         DBHelper.save(product1);
@@ -168,6 +167,8 @@ public class Seeds {
         shop.addToStock(product21, 10);
         DBHelper.save(product21);
 
+        DBHelper.createOrder(user, product1, 3);
+        DBHelper.createOrder(user, product4, 5);
 
     }
 }
