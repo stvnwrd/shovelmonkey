@@ -43,23 +43,23 @@ public class BasketsController {
 
         //post
 
-
-        post ("/baskets/orders", (req, res) -> {
-            int user = Integer.parseInt(req.queryParams("user"));
-            int Product
-            Product product = DBHelper.find(Product.class, productId);
-            int quantity = Integer.parseInt(req.queryParams("quantity"));
-
-
-            Basket basket = new Product();
-
-
-            DBHelper.save(basket);
-            res.redirect("/baskets");
-            return null;
-
-        },new VelocityTemplateEngine());
-
+//
+//        post ("/baskets/orders", (req, res) -> {
+//            int user = Integer.parseInt(req.queryParams("user"));
+//            int Product;
+//            Product product = DBHelper.find(Product.class, productId);
+//            int quantity = Integer.parseInt(req.queryParams("quantity"));
+//
+//
+//            Basket basket = new Product();
+//
+//
+//            DBHelper.save(basket);
+//            res.redirect("/baskets");
+//            return null;
+//
+//        },new VelocityTemplateEngine());
+//
 
 
 
