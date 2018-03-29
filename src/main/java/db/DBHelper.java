@@ -137,6 +137,7 @@ public class DBHelper {
         Basket basket = new Basket();
         User user = new User(name, username, basket);
         DBHelper.save(user);
+        session = HibernateUtil.getSessionFactory().openSession();
         basket.setUser(user);
         DBHelper.save(basket);
     }

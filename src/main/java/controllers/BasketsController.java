@@ -25,7 +25,7 @@ public class BasketsController {
 
         get("/baskets/orders", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            User loggedInUser = LoginController.getLoggedInUser(req, res);
+            User loggedInUser = LoginController.getLoggedInUserName(req, res);
             Basket basket = loggedInUser.getBasket();
             List<Order> orders = basket.getOrders();
             model.put("template", "templates/baskets/index.vtl");

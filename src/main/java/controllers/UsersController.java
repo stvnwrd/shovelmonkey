@@ -24,9 +24,7 @@ public class UsersController {
             String name = req.queryParams("name");
             String username = req.queryParams("username");
 
-            Basket basket = new Basket();
-            User user = new User(name, username, basket);
-            DBHelper.save(user);
+            DBHelper.createUser(name, username);
 
             req.session().attribute("name", name);
             res.redirect("/");
