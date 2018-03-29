@@ -16,12 +16,6 @@
             <p class="total"> Total Price: £$product.decimalFormat($product.getTotalPrice())</p>
 
             <form action="/baskets/orders" method="post">
-                <input type="hidden" name="product" value="$product.getId()">
-                <input type="hidden" name="quantity" value="quantity">
-                <input type="submit" value="Add To Basket" class="button">
-            </form>
-
-
 
             <label for="quantity">Quantity:</label>
             <select id="quantity" name="quantity">
@@ -30,6 +24,10 @@
                 }
                 #end
             </select>
+
+                <input id="product" type="hidden" name="product" value="$product.getId()">
+                <input type="submit" value="Add To Basket" class="button">
+            </form>
         </div>
 
     </div>

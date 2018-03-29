@@ -29,7 +29,7 @@ public class  MainController {
 
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            User loggedInUser = LoginController.getLoggedInUserName(req, res);
+            User loggedInUser = LoginController.getLoggedInUser(req, res);
             model.put("user", loggedInUser);
             model.put("template","templates/main.vtl");
             return new ModelAndView(model, "templates/layout.vtl");

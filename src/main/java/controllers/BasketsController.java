@@ -21,11 +21,11 @@ public class BasketsController {
     private void setupEndPoints() {
 
 
-        // index
+        // index for users basket
 
         get("/baskets/orders", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            User loggedInUser = LoginController.getLoggedInUserName(req, res);
+            User loggedInUser = LoginController.getLoggedInUser(req, res);
             Basket basket = loggedInUser.getBasket();
             List<Order> orders = basket.getOrders();
             model.put("template", "templates/baskets/index.vtl");
@@ -37,48 +37,32 @@ public class BasketsController {
 
 
 
-       // show all baskets by id
+        // add to basket
 
-//        get("/baskets/:id")
+        post("/baskets/orders", (req, res) -> {
+            User loggedInUser = LoginController.getLoggedInUserName(req, res);
+            int productId = Integer.parseInt(req.queryParams("product"));
+            int quantity = Integer.parseInt(req.queryParams("quantity"));
+            Product product = DBHelper.find(Product.class, productId);
 
+            DBHelper.createOrder(loggedInUser, product, quantity);
 
-
-
-
-        //post
-
-//
-//        post ("/baskets/orders", (req, res) -> {
-//            int user = Integer.parseInt(req.queryParams("user"));
-//            int Product;
-//            Product product = DBHelper.find(Product.class, productId);
-//            int quantity = Integer.parseInt(req.queryParams("quantity"));
-//
-//
-//            Basket basket = new Product();
-//
-//
-//            DBHelper.save(basket);
-//            res.redirect("/baskets");
-//            return null;
-//
-//        },new VelocityTemplateEngine());
-//
+            res.redirect("/baskets/orders");
+            return null;
+        }, new VelocityTemplateEngine());
 
 
+        // Buy
 
+        post ("/baskets/orders/clear", (req, res) -> {
+            User currentUser = LoginController.getLoggedInUser(req, res);
 
-        // destroy
+            DBHelper.buyItems(currentUser);
 
-//
-//        post ("/baskets/:id/delete", (req, res) -> {
-//            int id = Integer.parseInt(req.params(":id"));
-//            Product productToDelete = DBHelper.find(Product.class, id);
-//            DBHelper.delete(productToDelete);
-//            res.redirect("/baskets");
-//            return null;
-//        }, new VelocityTemplateEngine());
-//
-//
+            res.redirect("/baskets/orders");
+            return null;
+
+        }, new VelocityTemplateEngine());
+
     }
 }
