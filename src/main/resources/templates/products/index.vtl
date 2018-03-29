@@ -3,7 +3,9 @@
 
     <h4 class="category-locator">$category.getTitle()</h4>
     <h4 class="category-locator">$subCategory.getTitle()</h4>
-
+    #if ($user.getName().equals("admin"))
+        <h4 class="category-locator"><a href="/products/new">New Product</a></h4>
+    #end
 
     <div>
         #foreach($product in $products)

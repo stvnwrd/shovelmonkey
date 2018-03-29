@@ -1,8 +1,6 @@
 package controllers;
 
 import db.Seeds;
-import models.Basket;
-import models.LogIn;
 import models.User;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;

@@ -113,8 +113,6 @@ public class ProductsController {
 
             Product product = new Product(name, price, blurb, subCategory, image, shop);
 
-            // need to look at shop here
-
             DBHelper.save(product);
             res.redirect("/products");
             return null;
