@@ -28,7 +28,7 @@ public class ProductsController {
         get("/products", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Product> products = DBHelper.getAll(Product.class);
-            User loggedInUser = LoginController.getLoggedInUserName(req, res);
+            User loggedInUser = LoginController.getLoggedInUser(req, res);
             model.put("user", loggedInUser);
             model.put("template", "templates/products/index.vtl");
             model.put("products", products);
@@ -52,7 +52,7 @@ public class ProductsController {
                 }
             }
             Map<String, Object> model = new HashMap<>();
-            User loggedInUser = LoginController.getLoggedInUserName(req, res);
+            User loggedInUser = LoginController.getLoggedInUser(req, res);
             model.put("user", loggedInUser);
             model.put("category", category);
             model.put("subCategory", blankSub);
@@ -71,7 +71,7 @@ public class ProductsController {
             Category category = subCategory.getCategory();
             List<Product> products = DBHelper.findProductsBySubCategory(subCategory);
             Map<String, Object> model = new HashMap<>();
-            User loggedInUser = LoginController.getLoggedInUserName(req, res);
+            User loggedInUser = LoginController.getLoggedInUser(req, res);
             model.put("user", loggedInUser);
             model.put("category", category);
             model.put("subCategory", subCategory);
@@ -79,7 +79,6 @@ public class ProductsController {
             model.put("template", "templates/products/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
-
 
 
 
@@ -102,7 +101,7 @@ public class ProductsController {
 
         post ("/products", (req, res) -> {
             int shopId = Integer.parseInt(req.queryParams("shop"));
-           Shop shop = DBHelper.find(Shop.class, shopId);
+            Shop shop = DBHelper.find(Shop.class, shopId);
             int subCategoryId = Integer.parseInt(req.queryParams("subCategory"));
             SubCategory subCategory = DBHelper.find(SubCategory.class, subCategoryId);
 
@@ -168,7 +167,7 @@ public class ProductsController {
 
 
 
-        // update
+        // update by id
 
         post ("/products/:id", (req, res) -> {
             String strId = req.params(":id");
@@ -192,7 +191,6 @@ public class ProductsController {
             return null;
 
         }, new VelocityTemplateEngine());
-
 
 
 

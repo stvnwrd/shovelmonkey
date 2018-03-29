@@ -150,8 +150,34 @@ public class DBHelper {
         currentUser.getBasket().addOrder(order);
         currentUser.getBasket().adjustTotalItems();
         currentUser.getBasket().adjustTotalCost();
-        DBHelper.save(currentUser);
+        DBHelper.save(currentUser.getBasket());
     }
 
+    public static void buyItems (User user) {
+        Product product = null;
+        int quantity = 0;
+        for (Order order : user.getBasket().getOrders()) {
+            product = order.getProduct();
+            quantity = order.getQuantity();
+            product.decreaseStockQuantity(quantity);
+            DBHelper.save(product);
+            session = HibernateUtil.getSessionFactory().openSession();
+        }
+
+        Basket basket = DBHelper.find(Basket.class, user.getBasket().getId());
+        DBHelper.delete(basket);
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        Basket newBasket = new Basket();
+        newBasket.setUser(user);
+        DBHelper.save(newBasket);
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        User foundUser = DBHelper.find(User.class, user.getId());
+        foundUser.setBasket(newBasket);
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        DBHelper.save(foundUser);
+    }
 
 }

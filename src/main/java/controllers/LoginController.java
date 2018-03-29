@@ -66,4 +66,16 @@ public class LoginController {
             }
         return null;
     }
+
+
+    public static User getLoggedInUser(Request req, Response res) {
+        String name = req.session().attribute("name");
+        List<User> allUsers = DBHelper.getAll(User.class);
+            for (User user : allUsers) {
+                if (user.getName().equals(name)) {
+                    return user;
+                }
+            }
+        return null;
+    }
 }

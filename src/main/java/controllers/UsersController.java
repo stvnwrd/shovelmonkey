@@ -12,6 +12,7 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 
 public class UsersController {
+
     public UsersController() {
         this.setupEndpoints();
     }
@@ -34,4 +35,5 @@ public class UsersController {
 
 
     }
+
 }
