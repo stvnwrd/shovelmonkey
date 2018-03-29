@@ -1,6 +1,7 @@
 package controllers;
 
 import db.DBHelper;
+import models.Product;
 import models.User;
 import spark.ModelAndView;
 import spark.Request;
@@ -24,8 +25,10 @@ public class LoginController {
 
         get ("/login", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            return new ModelAndView(model, "templates/login.vtl");
+            model.put("template", "templates/login.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
 
         post("/login", (req, res) -> {
             String name = req.queryParams("name");
