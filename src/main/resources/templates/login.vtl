@@ -1,16 +1,38 @@
-<div>
 
-    <h1>Login</h1>
 
+<div class="col-sm-2 text-left">
+
+    <h3>Login</h3>
 
   <form action="/login" method="post">
-    <label for="name">Your name</label>
-    <input id="name" name="name" type="text">
+    <label for="name"></label>
+    <input class="log-reg-buttons" id="name" name="name" type="text" placeholder="Enter Name">
 
-      <button type="submit">Submit name</button>
+      <button type="submit" class="btn btn-default btn-sm btn3d addtobasket button-overrule">Submit</button>
 
   </form>
 
+</div>
 
+
+<div class="col-sm-1">
+
+</div>
+
+
+<div class="col-sm-3 text-left">
+
+    <h3>Register</h3>
+
+    <form action="/users" method="post">
+        <label for="name"></label>
+        <input class="log-reg-buttons" name="name" type="text" placeholder="Enter Name">
+
+        <label for="username"></label>
+        <input class="log-reg-buttons" name = "username" type="text" id="username" placeholder="Enter Username">
+
+        <button type="submit" class="btn btn-default btn-sm btn3d addtobasket button-overrule" >Submit</button>
+
+    </form>
 
 </div>

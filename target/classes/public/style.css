@@ -195,8 +195,9 @@ div .show .addtobasket {
 }
 
 .table-item-detail {
-    text-align: justify;
+    text-align: left;
     margin: 5px;
+    width: 100%;
 }
 
 td {
@@ -205,7 +206,7 @@ td {
 
 .table-price {
     text-align: right;
-    padding-left: 40px;
+
 }
 
 .button-overrule {
@@ -228,11 +229,18 @@ td {
     color: white;
     font-size: 72px;
     padding-top: 200px;
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+    			 0px 8px 13px rgba(0,0,0,0.1),
+    			 0px 18px 23px rgba(0,0,0,0.1);
 }
 
 .category-locator {
     text-align: left;
     padding-bottom: 20px;
 
+}
+
+.log-reg-buttons {
+    display: block;
 }
 

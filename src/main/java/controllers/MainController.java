@@ -25,6 +25,7 @@ public class  MainController {
         ProductsController productsController = new ProductsController();
         BasketsController basketsController = new BasketsController();
         LoginController loginController = new LoginController();
+        UsersController usersController = new UsersController();
 
 
         get("/", (req, res) -> {
