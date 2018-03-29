@@ -25,7 +25,7 @@ public class BasketsController {
 
         get("/baskets/orders", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            User loggedInUser = LoginController.getLoggedInUserName(req, res);
+            User loggedInUser = LoginController.getLoggedInUser(req, res);
             Basket basket = loggedInUser.getBasket();
             List<Order> orders = basket.getOrders();
             model.put("template", "templates/baskets/index.vtl");
@@ -52,10 +52,17 @@ public class BasketsController {
         }, new VelocityTemplateEngine());
 
 
+        // Buy
 
+        post ("/baskets/orders/clear", (req, res) -> {
+            User currentUser = LoginController.getLoggedInUser(req, res);
 
+            DBHelper.buyItems(currentUser);
 
+            res.redirect("/baskets/orders");
+            return null;
 
+        }, new VelocityTemplateEngine());
 
     }
 }

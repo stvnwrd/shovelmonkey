@@ -82,7 +82,6 @@ public class ProductsController {
 
 
 
-
         // new
 
         get("/products/new", (req, res) -> {
@@ -168,7 +167,7 @@ public class ProductsController {
 
 
 
-        // update
+        // update by id
 
         post ("/products/:id", (req, res) -> {
             String strId = req.params(":id");
@@ -192,7 +191,6 @@ public class ProductsController {
             return null;
 
         }, new VelocityTemplateEngine());
-
 
 
 

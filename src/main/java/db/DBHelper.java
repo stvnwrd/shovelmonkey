@@ -150,8 +150,20 @@ public class DBHelper {
         currentUser.getBasket().addOrder(order);
         currentUser.getBasket().adjustTotalItems();
         currentUser.getBasket().adjustTotalCost();
-        DBHelper.save(currentUser);
+        DBHelper.save(currentUser.getBasket());
     }
 
+    public static void buyItems (User user) {
+        Product product = null;
+        int quantity = 0;
+        for (Order order : user.getBasket().getOrders()) {
+            product = order.getProduct();
+            quantity = order.getQuantity();
+            product.decreaseStockQuantity(quantity);
+            DBHelper.save(product);
+        }
+        (user.getBasket()).clearBasket();
+        DBHelper.save(user.getBasket());
+    }
 
 }

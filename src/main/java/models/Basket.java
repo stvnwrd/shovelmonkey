@@ -107,6 +107,10 @@ public class Basket {
             orders.remove(order);
     }
 
+    public void clearBasket() {
+        orders.clear();
+    }
+
     public void adjustTotalCost() {
         int tradeResult = 0;
         int vatResult = 0;

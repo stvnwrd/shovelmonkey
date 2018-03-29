@@ -86,8 +86,10 @@ public class User {
 
     public void createOrder(Product product, int quantity) {
         order = new Order(product, quantity);
+        order.setBasket(basket);
         DBHelper.save(order);
         basket.addOrder(order);
+        DBHelper.save(basket);
     }
 
     public void removeOrder(int id) {
