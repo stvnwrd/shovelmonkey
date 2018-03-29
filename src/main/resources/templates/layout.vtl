@@ -24,7 +24,11 @@
             <p class="col-sm-3 col-sm-offset-3 text-right hello">Hello $user.getName()</p>
             #end
             <p class="col-sm-2 text-right"><a href="#">My Account</a></p>
-            <p class="col-sm-3 text-center"><a href="/login">LogIn/Register</a></p>
+            #if(!$user.getName())
+            <p class="col-sm-3 text-center"><a href="/login">Login/Register</a></p>
+            #else
+            <p class="col-sm-3 text-center"><a href="/logout">Logout</a></p>
+            #end
             <p class="col-sm-1 text-center"><a href="/baskets/orders"><i class="fas fa-shopping-basket"></i></a></p>
             <p class="col-sm-1 text-left"><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></p>
         </nav>

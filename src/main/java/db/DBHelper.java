@@ -161,9 +161,23 @@ public class DBHelper {
             quantity = order.getQuantity();
             product.decreaseStockQuantity(quantity);
             DBHelper.save(product);
+            session = HibernateUtil.getSessionFactory().openSession();
         }
-        (user.getBasket()).clearBasket();
-        DBHelper.save(user.getBasket());
+
+        Basket basket = DBHelper.find(Basket.class, user.getBasket().getId());
+        DBHelper.delete(basket);
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        Basket newBasket = new Basket();
+        newBasket.setUser(user);
+        DBHelper.save(newBasket);
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        User foundUser = DBHelper.find(User.class, user.getId());
+        foundUser.setBasket(newBasket);
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        DBHelper.save(foundUser);
     }
 
 }

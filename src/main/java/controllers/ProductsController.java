@@ -28,7 +28,7 @@ public class ProductsController {
         get("/products", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Product> products = DBHelper.getAll(Product.class);
-            User loggedInUser = LoginController.getLoggedInUserName(req, res);
+            User loggedInUser = LoginController.getLoggedInUser(req, res);
             model.put("user", loggedInUser);
             model.put("template", "templates/products/index.vtl");
             model.put("products", products);
@@ -52,7 +52,7 @@ public class ProductsController {
                 }
             }
             Map<String, Object> model = new HashMap<>();
-            User loggedInUser = LoginController.getLoggedInUserName(req, res);
+            User loggedInUser = LoginController.getLoggedInUser(req, res);
             model.put("user", loggedInUser);
             model.put("category", category);
             model.put("subCategory", blankSub);
@@ -71,7 +71,7 @@ public class ProductsController {
             Category category = subCategory.getCategory();
             List<Product> products = DBHelper.findProductsBySubCategory(subCategory);
             Map<String, Object> model = new HashMap<>();
-            User loggedInUser = LoginController.getLoggedInUserName(req, res);
+            User loggedInUser = LoginController.getLoggedInUser(req, res);
             model.put("user", loggedInUser);
             model.put("category", category);
             model.put("subCategory", subCategory);

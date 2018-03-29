@@ -49,7 +49,7 @@ public class Basket {
         this.user = user;
     }
 
-    @OneToMany(mappedBy = "basket")
+    @OneToMany(mappedBy = "basket", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     public List<Order> getOrders() {
         return orders;
